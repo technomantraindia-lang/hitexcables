@@ -897,23 +897,112 @@ p {
   text-transform: uppercase;
 }
 
+.industries-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  gap: 20px;
+}
+
 .industries-title-line {
   width: 48px;
   height: 4px;
   background: #007793;
-  margin: 0 auto;
+  margin: 6px 0 0 0;
   border-radius: 2px;
 }
 
-.industries-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 18px;
+.slider-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider-nav-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 95, 117, 0.08);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.slider-nav-arrow:hover {
+  background: #005f75;
+  border-color: #005f75;
+  box-shadow: 0 6px 20px rgba(0, 95, 117, 0.25);
+  transform: translateY(-2px);
+}
+
+.slider-nav-arrow:hover svg {
+  color: #ffffff !important;
+}
+
+.slider-nav-arrow:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Slider Track Container */
+.industries-slider-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 8px 0 16px 0;
+}
+
+.industries-slider-track {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.slider-card-item {
+  height: 350px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* Dots Bar */
+.slider-dots-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.slider-dot-btn {
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+  background: #cbd5e1;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  padding: 0;
+}
+
+.slider-dot-btn.active {
+  width: 32px;
+  background: #005f75;
+}
+
+.slider-dot-btn:hover {
+  background: #0284c7;
 }
 
 .industry-card-item {
-  height: 330px;
-  border-radius: 18px;
+  height: 350px;
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);

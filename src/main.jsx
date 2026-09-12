@@ -11,6 +11,7 @@ import {
   Cable,
   CalendarDays,
   CheckCircle2,
+  ChevronLeft,
   ChevronRight,
   Clock,
   Cog,
@@ -154,6 +155,137 @@ function AnimatedCounter({ value }) {
   }, [value]);
 
   return <span ref={ref}>{displayValue}</span>;
+}
+
+function IndustriesSlider({ items }) {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isPaused, setIsPaused] = React.useState(false);
+  const [cardsToShow, setCardsToShow] = React.useState(4);
+  const touchStartX = React.useRef(0);
+  const touchEndX = React.useRef(0);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 640) {
+        setCardsToShow(1);
+      } else if (window.innerWidth <= 1024) {
+        setCardsToShow(2);
+      } else {
+        setCardsToShow(4);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, items.length - cardsToShow);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  React.useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused, maxIndex]);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 50) {
+      handleNext();
+    }
+    if (touchEndX.current - touchStartX.current > 50) {
+      handlePrev();
+    }
+  };
+
+  const translatePercent = currentIndex * (100 / cardsToShow);
+  const translateGap = currentIndex * (20 / cardsToShow);
+
+  return (
+    <section className="industries-section" id="applications">
+      <div className="industries-container">
+        <div className="industries-header-row reveal">
+          <div className="industries-header">
+            <h2>POWERING WHAT MATTERS MOST</h2>
+            <div className="industries-title-line"></div>
+          </div>
+          <div className="slider-nav-btns">
+            <button className="slider-nav-arrow" onClick={handlePrev} aria-label="Previous Slide">
+              <ChevronLeft size={22} color="#005f75" />
+            </button>
+            <button className="slider-nav-arrow" onClick={handleNext} aria-label="Next Slide">
+              <ChevronRight size={22} color="#005f75" />
+            </button>
+          </div>
+        </div>
+
+        <div
+          className="industries-slider-wrapper"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div
+            className="industries-slider-track"
+            style={{
+              transform: `translateX(calc(-${translatePercent}% - ${translateGap}px))`
+            }}
+          >
+            {items.map(([t, im, IconComp]) => (
+              <div
+                className="industry-card-item slider-card-item reveal-stagger-item"
+                key={t}
+                style={{ flex: `0 0 calc(${100 / cardsToShow}% - ${(20 * (cardsToShow - 1)) / cardsToShow}px)` }}
+              >
+                <div
+                  className="industry-card-bg"
+                  style={{ backgroundImage: `url("${im}")` }}
+                ></div>
+                <div className="industry-overlay"></div>
+                <div className="industry-card-content">
+                  <div className="industry-icon-badge">
+                    <IconComp size={22} strokeWidth={2} />
+                  </div>
+                  <span className="industry-card-title">{t}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {maxIndex > 0 && (
+          <div className="slider-dots-bar">
+            {[...Array(maxIndex + 1)].map((_, idx) => (
+              <button
+                key={idx}
+                className={`slider-dot-btn ${currentIndex === idx ? 'active' : ''}`}
+                onClick={() => setCurrentIndex(idx)}
+                aria-label={`Slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
 }
 
 function App() {
@@ -824,32 +956,8 @@ function App() {
           </div>
         </section>
 
-        {/* Powering What Matters Most Section */}
-        <section className="industries-section" id="applications">
-          <div className="industries-container">
-            <div className="industries-header reveal">
-              <h2>POWERING WHAT MATTERS MOST</h2>
-              <div className="industries-title-line"></div>
-            </div>
-            <div className="industries-cards-grid">
-              {industries.map(([t, im, IconComp]) => (
-                <div className="industry-card-item reveal-stagger-item" key={t}>
-                  <div
-                    className="industry-card-bg"
-                    style={{ backgroundImage: `url("${im}")` }}
-                  ></div>
-                  <div className="industry-overlay"></div>
-                  <div className="industry-card-content">
-                    <div className="industry-icon-badge">
-                      <IconComp size={22} strokeWidth={2} />
-                    </div>
-                    <span className="industry-card-title">{t}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Powering What Matters Most Section - 4 Card Slider */}
+        <IndustriesSlider items={industries} />
 
         {/* Precision Infrastructure Banner */}
         <section className="precision-banner-section" id="infrastructure">
