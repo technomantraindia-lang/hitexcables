@@ -1,34 +1,53 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import {
+  Activity,
   ArrowRight,
   Award,
   BadgeCheck,
+  BadgePercent,
   Boxes,
   Building2,
   Cable,
   CalendarDays,
   CheckCircle2,
   ChevronRight,
+  Clock,
+  Cog,
+  Cpu,
+  DollarSign,
+  Droplet,
+  Droplets,
   Factory,
+  Feather,
+  FileText,
+  Flame,
   Headphones,
+  Hospital,
   House,
   Instagram,
+  Landmark,
+  Layers,
   Linkedin,
   Mail,
   MapPin,
   Menu,
+  Network,
+  Palette,
   Phone,
-  ShieldCheck,
-  Sparkles,
-  Users,
-  X,
-  FileText,
-  Zap,
+  Server,
+  Settings,
   Shield,
-  Hospital,
-  Landmark,
-  Server
+  ShieldCheck,
+  Sliders,
+  Sparkles,
+  Sprout,
+  Store,
+  Truck,
+  Users,
+  Wrench,
+  X,
+  Zap
 } from 'lucide-react';
 import AboutPage from './AboutPage.jsx';
 import ProductPage from './ProductPage.jsx';
@@ -260,13 +279,223 @@ function App() {
     }
   };
 
-  const products = [
-    ['image 1.jpeg', 'PVC/XLPE Insulated Cables', 'Industrial & Heavy Duty', 'High Thermal Resistance'],
-    ['image 21.jpeg', '3 - Core Submersible Flat Cables', 'Submersible Pumps', '100% Water Resistant'],
-    ['image 4.jpeg', 'Multi Strand - Multi Core Flexible Cables', 'Wiring & Automation', 'High Flexibility'],
-    ['image 2.jpeg', 'House Hold Wires', 'Residential Wiring', 'Flame Retardant (FR)'],
-    ['image 21.jpeg', 'Solar Cables', 'Renewable Energy Systems', 'UV & Weather Proof'],
-    ['image 3.jpeg', 'As per Specification Cables', 'Custom Applications', 'Engineered to Order']
+  const homeProductCards = [
+    {
+      num: '01',
+      title: 'Household Wires',
+      titleHighlight: 'Wires',
+      subtitle: 'Reliable Wiring for Every Home',
+      tagline: 'Safe. Durable. Everyday Use.',
+      badge: 'SAFE HOMES BRIGHTER TOMORROW',
+      img: `${A}cable_card_1_hd.png`,
+      stats: [
+        { icon: ShieldCheck, text: 'Safety Assured' },
+        { icon: Award, text: 'High Durability' },
+        { icon: Palette, text: 'Multiple Colours' },
+        { icon: CheckCircle2, text: 'Trusted Performance' }
+      ],
+      features: [
+        'High Quality Conductor',
+        'Flame Retardant Insulation',
+        'Available in Various Colours',
+        'Long Service Life'
+      ],
+      applications: [
+        { icon: House, label: 'Homes' },
+        { icon: Building2, label: 'Offices' },
+        { icon: Store, label: 'Shops' },
+        { icon: Zap, label: 'General Wiring' }
+      ]
+    },
+    {
+      num: '02',
+      title: 'Multicore Flexible Cables',
+      titleHighlight: 'Flexible Cables',
+      subtitle: 'Flexibility for Modern Connections',
+      tagline: 'Safe. Flexible. Reliable.',
+      badge: 'FLEXIBLE SOLUTIONS FOR A SMARTER WORLD',
+      img: `${A}cable_card_2_hd.png`,
+      stats: [
+        { icon: Zap, text: 'Flexible Design' },
+        { icon: Settings, text: 'Easy Installation' },
+        { icon: Activity, text: 'High Conductivity' },
+        { icon: Clock, text: 'Long Life' }
+      ],
+      features: [
+        'Flexible Copper Conductors',
+        'Superior Insulation',
+        'Available in Multiple Cores',
+        'Excellent Mechanical Strength'
+      ],
+      applications: [
+        { icon: Factory, label: 'Industrial' },
+        { icon: Cog, label: 'Machinery' },
+        { icon: Sliders, label: 'Control Panels' },
+        { icon: Cpu, label: 'Automation' }
+      ]
+    },
+    {
+      num: '03',
+      title: 'PVC Insulated Cable',
+      titleHighlight: 'Insulated Cable',
+      subtitle: 'Trusted Power for a Safer Tomorrow',
+      tagline: 'Strong Insulation. Reliable Performance.',
+      badge: 'POWERING A SAFER TOMORROW',
+      img: `${A}cable_card_3_hd.png`,
+      stats: [
+        { icon: Shield, text: 'High Insulation' },
+        { icon: Flame, text: 'Fire Resistant' },
+        { icon: CheckCircle2, text: 'Durable & Strong' },
+        { icon: Zap, text: 'Safe Power Supply' }
+      ],
+      features: [
+        'Premium PVC Insulation',
+        'High Electrical Resistance',
+        'Available in Various Sizes',
+        'Long Lasting Performance'
+      ],
+      applications: [
+        { icon: House, label: 'Residential' },
+        { icon: Building2, label: 'Commercial' },
+        { icon: Factory, label: 'Industrial' },
+        { icon: Truck, label: 'Heavy Equipment' }
+      ]
+    },
+    {
+      num: '04',
+      title: 'Copper Armoured Cable',
+      titleHighlight: 'Armoured Cable',
+      subtitle: 'Strength Beneath the Surface',
+      tagline: 'Extra Protection. Unstoppable Power.',
+      badge: 'BUILT TO WITHSTAND MORE',
+      img: `${A}cable_card_4_hd.png`,
+      stats: [
+        { icon: ShieldCheck, text: 'Extra Protection' },
+        { icon: Zap, text: 'High Load Capacity' },
+        { icon: Shield, text: 'Corrosion Resistant' },
+        { icon: Clock, text: 'Long Life' }
+      ],
+      features: [
+        'Copper Armouring for Extra Strength',
+        'High Current Carrying Capacity',
+        'Suitable for Underground Installation',
+        'Robust and Durable'
+      ],
+      applications: [
+        { icon: Zap, label: 'Power Distribution' },
+        { icon: Factory, label: 'Industrial Plants' },
+        { icon: Landmark, label: 'Infrastructure' },
+        { icon: Layers, label: 'Underground Wiring' }
+      ]
+    },
+    {
+      num: '05',
+      title: '1000 Sq.mm Single Core Aluminum Cables',
+      titleHighlight: 'Aluminum Cables',
+      subtitle: 'Powering Big Projects',
+      tagline: 'High Capacity. Maximum Reliability.',
+      badge: 'BUILT FOR BIGGER TOMORROW',
+      img: `${A}cable_card_5_hd.png`,
+      stats: [
+        { icon: Zap, text: 'High Capacity' },
+        { icon: Feather, text: 'Light Weight' },
+        { icon: DollarSign, text: 'Cost Effective' },
+        { icon: Building2, text: 'Durable Construction' }
+      ],
+      features: [
+        'Single Core Aluminum Conductor',
+        '1000 Sq.mm High Capacity',
+        'Excellent Electrical Performance',
+        'Ideal for Heavy Duty Applications'
+      ],
+      applications: [
+        { icon: Zap, label: 'Power Transmission' },
+        { icon: Factory, label: 'Industrial Projects' },
+        { icon: Building2, label: 'Utilities' },
+        { icon: Landmark, label: 'Large Infrastructure' }
+      ]
+    },
+    {
+      num: '06',
+      title: 'Xlpe Cop.Allu Unarm ARM Cables',
+      titleHighlight: 'Unarm ARM Cables',
+      subtitle: 'Engineered for Higher Performance',
+      tagline: 'Advanced Insulation. Maximum Safety.',
+      badge: 'ENGINEERED FOR EXCELLENCE',
+      img: `${A}cable_card_6_hd.png`,
+      stats: [
+        { icon: Award, text: 'High Performance' },
+        { icon: Flame, text: 'Thermal Stability' },
+        { icon: Sun, text: 'Weather Resistant' },
+        { icon: Clock, text: 'Long Life' }
+      ],
+      features: [
+        'XLPE Insulation',
+        'Copper/Aluminium Conductor',
+        'Unarmoured/Armoured Options',
+        'High Temperature & Load Capacity'
+      ],
+      applications: [
+        { icon: Zap, label: 'Power Distribution' },
+        { icon: Factory, label: 'Industrial Use' },
+        { icon: Landmark, label: 'Infrastructure' },
+        { icon: Server, label: 'Utility Networks' }
+      ]
+    },
+    {
+      num: '07',
+      title: 'Armoured / Unarmoured Cables',
+      titleHighlight: 'Unarmoured Cables',
+      subtitle: 'Built for Every Environment',
+      tagline: 'Strength. Safety. Versatility.',
+      badge: 'VERSATILE POWER SOLUTIONS',
+      img: `${A}cable_card_7_hd.png`,
+      stats: [
+        { icon: Sliders, text: 'Versatile Options' },
+        { icon: ShieldCheck, text: 'High Durability' },
+        { icon: Sun, text: 'Weather Resistant' },
+        { icon: CheckCircle2, text: 'Reliable Performance' }
+      ],
+      features: [
+        'Available in Armoured & Unarmoured',
+        'Suitable for Indoor & Outdoor Use',
+        'Multiple Core & Size Options',
+        'Strong and Flexible'
+      ],
+      applications: [
+        { icon: Factory, label: 'Industrial' },
+        { icon: Building2, label: 'Commercial' },
+        { icon: Sun, label: 'Outdoor Installations' },
+        { icon: Network, label: 'Distribution Networks' }
+      ]
+    },
+    {
+      num: '08',
+      title: 'Submersible PVC Flat Cables',
+      titleHighlight: 'Flat Cables',
+      subtitle: 'Reliable Connections Under Water',
+      tagline: 'Water Resistant. Stronger Performance.',
+      badge: 'DESIGNED FOR TOUGHER ENVIRONMENTS',
+      img: `${A}cable_card_8_hd.png`,
+      stats: [
+        { icon: Droplets, text: 'Water Resistant' },
+        { icon: Zap, text: 'Flexible Design' },
+        { icon: Clock, text: 'Long Life' },
+        { icon: ShieldCheck, text: 'Safe & Reliable' }
+      ],
+      features: [
+        'Specially Designed for Submersible Use',
+        'High Quality PVC Insulation',
+        'Available in Multiple Cores',
+        'Resistant to Moisture & Chemicals'
+      ],
+      applications: [
+        { icon: Droplet, label: 'Borewell Pumps' },
+        { icon: Cog, label: 'Submersible Motors' },
+        { icon: Sprout, label: 'Irrigation' },
+        { icon: Droplets, label: 'Water Supply Systems' }
+      ]
+    }
   ];
 
   const features = [
@@ -496,23 +725,77 @@ function App() {
             />
           </div>
           <div className="product-cards-grid">
-            {products.map(([im, title, category, feature]) => (
-              <div className="product-card-item reveal-stagger-item" key={title}>
-                <div className="product-badge-tag">{category}</div>
-                <div className="product-img-box">
-                  <img src={img(im.match(/\d+/)[0])} alt={title} />
-                </div>
-                <div className="product-info-box">
-                  <h3>{title}</h3>
-                  <p className="product-feature-tag">
-                    <CheckCircle2 size={15} color="#10b981" /> {feature}
-                  </p>
-                  <a href="#contact-us" className="product-inquire-btn">
-                    Inquire Now <ArrowRight size={15} />
+            {homeProductCards.map((card) => {
+              const mainTitle = card.title.replace(card.titleHighlight, '');
+              return (
+                <div className="hd-product-card reveal-stagger-item" key={card.num}>
+                  <div className="hd-card-header">
+                    <div className="hd-card-top-bar">
+                      <span className="hd-card-number">{card.num}</span>
+                      <span className="hd-card-badge">{card.badge}</span>
+                    </div>
+                    <h3 className="hd-card-title">
+                      {mainTitle}<span>{card.titleHighlight}</span>
+                    </h3>
+                    <p className="hd-card-subtitle">{card.subtitle}</p>
+                    <p className="hd-card-tagline">{card.tagline}</p>
+                  </div>
+
+                  <div className="hd-card-img-box">
+                    <img src={card.img} alt={card.title} />
+                  </div>
+
+                  <div className="hd-stats-grid">
+                    {card.stats.map((st, idx) => {
+                      const StatIcon = st.icon;
+                      return (
+                        <div className="hd-stat-pill" key={idx}>
+                          <StatIcon size={14} />
+                          <span>{st.text}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className="hd-section-block">
+                    <div className="hd-block-title">KEY FEATURES</div>
+                    <ul className="hd-features-list">
+                      {card.features.map((feat, idx) => (
+                        <li key={idx}>
+                          <CheckCircle2 size={13} /> {feat}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="hd-section-block">
+                    <div className="hd-block-title">APPLICATIONS</div>
+                    <div className="hd-apps-grid">
+                      {card.applications.map((app, idx) => {
+                        const AppIcon = app.icon;
+                        return (
+                          <div className="hd-app-item" key={idx}>
+                            <AppIcon size={13} />
+                            <span>{app.label}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <a
+                    href="/products"
+                    className="hd-card-btn"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigate('products');
+                    }}
+                  >
+                    VIEW PRODUCT <ArrowRight size={15} />
                   </a>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
