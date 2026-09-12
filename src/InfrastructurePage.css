@@ -417,7 +417,7 @@
 }
 
 .infra-card-body {
-  padding: 14px 16px 16px;
+  padding: 16px 18px 18px;
   display: flex;
   flex-direction: column;
 }
@@ -425,17 +425,18 @@
 .infra-card-body h4 {
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  font-size: 16px;
+  font-size: 18.5px;
   color: #0f172a;
-  margin: 0 0 4px 0;
+  margin: 0 0 6px 0;
   line-height: 1.25;
 }
 
 .infra-card-body p {
-  font-size: 13.5px;
-  color: #64748b;
+  font-size: 15px;
+  font-weight: 600;
+  color: #334155;
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 /* --- SECTION 6: RELIABILITY CHECKLIST --- */
