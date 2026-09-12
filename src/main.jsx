@@ -288,7 +288,7 @@ function App() {
       subtitle: 'Reliable Wiring for Every Home',
       tagline: 'Safe. Durable. Everyday Use.',
       badge: 'SAFE HOMES BRIGHTER TOMORROW',
-      img: `${A}cable_transparent_1.png`,
+      img: `${A}cable_visual_1.png`,
       stats: [
         { icon: ShieldCheck, text: 'Safety Assured' },
         { icon: Award, text: 'High Durability' },
@@ -315,7 +315,7 @@ function App() {
       subtitle: 'Flexibility for Modern Connections',
       tagline: 'Safe. Flexible. Reliable.',
       badge: 'FLEXIBLE SOLUTIONS FOR A SMARTER WORLD',
-      img: `${A}cable_transparent_2.png`,
+      img: `${A}cable_visual_2.png`,
       stats: [
         { icon: Zap, text: 'Flexible Design' },
         { icon: Settings, text: 'Easy Installation' },
@@ -342,7 +342,7 @@ function App() {
       subtitle: 'Trusted Power for a Safer Tomorrow',
       tagline: 'Strong Insulation. Reliable Performance.',
       badge: 'POWERING A SAFER TOMORROW',
-      img: `${A}cable_transparent_3.png`,
+      img: `${A}cable_visual_3.png`,
       stats: [
         { icon: Shield, text: 'High Insulation' },
         { icon: Flame, text: 'Fire Resistant' },
@@ -369,7 +369,7 @@ function App() {
       subtitle: 'Strength Beneath the Surface',
       tagline: 'Extra Protection. Unstoppable Power.',
       badge: 'BUILT TO WITHSTAND MORE',
-      img: `${A}cable_transparent_4.png`,
+      img: `${A}cable_visual_4.png`,
       stats: [
         { icon: ShieldCheck, text: 'Extra Protection' },
         { icon: Zap, text: 'High Load Capacity' },
@@ -396,7 +396,7 @@ function App() {
       subtitle: 'Powering Big Projects',
       tagline: 'High Capacity. Maximum Reliability.',
       badge: 'BUILT FOR BIGGER TOMORROW',
-      img: `${A}cable_transparent_5.png`,
+      img: `${A}cable_visual_5.png`,
       stats: [
         { icon: Zap, text: 'High Capacity' },
         { icon: Feather, text: 'Light Weight' },
@@ -423,7 +423,7 @@ function App() {
       subtitle: 'Engineered for Higher Performance',
       tagline: 'Advanced Insulation. Maximum Safety.',
       badge: 'ENGINEERED FOR EXCELLENCE',
-      img: `${A}cable_transparent_6.png`,
+      img: `${A}cable_visual_6.png`,
       stats: [
         { icon: Award, text: 'High Performance' },
         { icon: Flame, text: 'Thermal Stability' },
@@ -450,7 +450,7 @@ function App() {
       subtitle: 'Built for Every Environment',
       tagline: 'Strength. Safety. Versatility.',
       badge: 'VERSATILE POWER SOLUTIONS',
-      img: `${A}cable_transparent_7.png`,
+      img: `${A}cable_visual_7.png`,
       stats: [
         { icon: Sliders, text: 'Versatile Options' },
         { icon: ShieldCheck, text: 'High Durability' },
@@ -477,7 +477,7 @@ function App() {
       subtitle: 'Reliable Connections Under Water',
       tagline: 'Water Resistant. Stronger Performance.',
       badge: 'DESIGNED FOR TOUGHER ENVIRONMENTS',
-      img: `${A}cable_transparent_8.png`,
+      img: `${A}cable_visual_8.png`,
       stats: [
         { icon: Droplets, text: 'Water Resistant' },
         { icon: Zap, text: 'Flexible Design' },
