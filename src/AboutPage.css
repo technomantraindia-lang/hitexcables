@@ -566,6 +566,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  padding-left: 50px;
 }
 
 .ab-mission-grid {
@@ -577,7 +578,7 @@
 }
 
 .ab-mission-col-item {
-  padding: 4px 28px;
+  padding: 4px 20px;
   text-align: center;
   border-right: 1px solid rgba(255, 255, 255, 0.18);
   display: flex;
