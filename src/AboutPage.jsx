@@ -81,6 +81,139 @@ function CountUpNumber({ end, duration = 1800, suffix = '' }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
+function AboutIndustriesSlider() {
+  const items = [
+    ['Residential', `${A}residential.png`],
+    ['Commercial', `${A}Commercial.png`],
+    ['Industrial', `${A}industial.png`],
+    ['Hospitals', `${A}Hospitals.png`],
+    ['Infrastructure', `${A}Infrastructure.png`],
+    ['Data Centers', `${A}data centre.png`]
+  ];
+
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isPaused, setIsPaused] = React.useState(false);
+  const [cardsToShow, setCardsToShow] = React.useState(4);
+  const touchStartX = React.useRef(0);
+  const touchEndX = React.useRef(0);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 640) {
+        setCardsToShow(1);
+      } else if (window.innerWidth <= 1024) {
+        setCardsToShow(2);
+      } else {
+        setCardsToShow(4);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, items.length - cardsToShow);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  React.useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused, maxIndex]);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 50) {
+      handleNext();
+    }
+    if (touchEndX.current - touchStartX.current > 50) {
+      handlePrev();
+    }
+  };
+
+  const translatePercent = currentIndex * (100 / cardsToShow);
+  const translateGap = currentIndex * (20 / cardsToShow);
+
+  return (
+    <section className="ab-industries-section" id="industries">
+      <div className="ab-industries-container">
+        <div className="ab-why-header ab-reveal" style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <span className="ab-eyebrow" style={{ color: '#008fa8' }}>INDUSTRIES WE SERVE</span>
+          <h2 className="ab-title" style={{ margin: '4px 0 0 0' }}>Powering Progress Across Every Sector</h2>
+        </div>
+
+        <div
+          className="ab-ind-carousel-wrapper ab-reveal-scale"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <button className="ab-ind-arrow prev" onClick={handlePrev} aria-label="Previous sector">
+            <ChevronLeft size={22} />
+          </button>
+
+          <div className="ab-ind-slider-viewport">
+            <div
+              className="ab-ind-slider-track"
+              style={{
+                transform: `translateX(calc(-${translatePercent}% - ${translateGap}px))`
+              }}
+            >
+              {items.map(([t, imgPath]) => (
+                <div
+                  className="ab-ind-card slider-card-item ab-stagger-item"
+                  style={{ flex: `0 0 calc(${100 / cardsToShow}% - ${(20 * (cardsToShow - 1)) / cardsToShow}px)` }}
+                  key={t}
+                >
+                  <img src={imgPath} alt={t} className="ab-ind-card-img" />
+                  <div className="ab-ind-card-overlay">
+                    <span>{t}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button className="ab-ind-arrow next" onClick={handleNext} aria-label="Next sector">
+            <ChevronRight size={22} />
+          </button>
+        </div>
+
+        {maxIndex > 0 && (
+          <div className="slider-dots-bar" style={{ marginTop: '28px' }}>
+            {[...Array(maxIndex + 1)].map((_, idx) => (
+              <button
+                key={idx}
+                className={`slider-dot-btn ${currentIndex === idx ? 'active' : ''}`}
+                onClick={() => setCurrentIndex(idx)}
+                aria-label={`Slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export default function AboutPage({ onNavigate }) {
   const [isPlayingIntroVideo, setIsPlayingIntroVideo] = React.useState(false);
   const [isPlayingMfgVideo, setIsPlayingMfgVideo] = React.useState(false);
@@ -595,58 +728,9 @@ export default function AboutPage({ onNavigate }) {
       </section>
 
       {/* -------------------------------------------------------------------------- */}
-      {/* 6.5 INDUSTRIES WE SERVE                                                   */}
+      {/* 6.5 INDUSTRIES WE SERVE - 4 CARD SLIDER                                   */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="ab-industries-section" id="industries">
-        <div className="ab-industries-container">
-          <div className="ab-why-header ab-reveal" style={{ textAlign: 'center', marginBottom: '32px' }}>
-            <span className="ab-eyebrow" style={{ color: '#008fa8' }}>INDUSTRIES WE SERVE</span>
-            <h2 className="ab-title" style={{ margin: '4px 0 0 0' }}>Powering Progress Across Every Sector</h2>
-          </div>
-
-          <div className="ab-ind-carousel-wrapper ab-reveal-scale">
-            <button
-              className="ab-ind-arrow prev"
-              onClick={() => {
-                const el = document.getElementById('ind-cards-scroll');
-                if (el) el.scrollBy({ left: -260, behavior: 'smooth' });
-              }}
-              aria-label="Previous sector"
-            >
-              <ChevronLeft size={20} />
-            </button>
-
-            <div className="ab-ind-cards-grid ab-stagger-container" id="ind-cards-scroll">
-              {[
-                ['Residential', `${A}residential.png`],
-                ['Commercial', `${A}Commercial.png`],
-                ['Industrial', `${A}industial.png`],
-                ['Hospitals', `${A}Hospitals.png`],
-                ['Infrastructure', `${A}Infrastructure.png`],
-                ['Data Centers', `${A}data centre.png`]
-              ].map(([t, imgPath], idx) => (
-                <div className="ab-ind-card ab-stagger-item" style={{ '--stagger-index': idx }} key={t}>
-                  <img src={imgPath} alt={t} className="ab-ind-card-img" />
-                  <div className="ab-ind-card-overlay">
-                    <span>{t}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <button
-              className="ab-ind-arrow next"
-              onClick={() => {
-                const el = document.getElementById('ind-cards-scroll');
-                if (el) el.scrollBy({ left: 260, behavior: 'smooth' });
-              }}
-              aria-label="Next sector"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
-        </div>
-      </section>
+      <AboutIndustriesSlider />
 
       {/* -------------------------------------------------------------------------- */}
       {/* 7. SUSTAINABILITY                                                          */}
