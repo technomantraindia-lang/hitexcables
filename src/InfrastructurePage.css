@@ -390,6 +390,7 @@
   flex-direction: column;
   box-sizing: border-box;
   flex-shrink: 0;
+  height: auto;
 }
 
 .infra-card:hover {
@@ -399,7 +400,7 @@
 }
 
 .infra-card-img-box {
-  height: 180px;
+  height: 195px;
   overflow: hidden;
   background: #f1f5f9;
 }
@@ -416,8 +417,7 @@
 }
 
 .infra-card-body {
-  padding: 18px 18px 22px;
-  flex-grow: 1;
+  padding: 14px 16px 16px;
   display: flex;
   flex-direction: column;
 }
@@ -425,17 +425,17 @@
 .infra-card-body h4 {
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  font-size: 16.5px;
+  font-size: 16px;
   color: #0f172a;
-  margin: 0 0 6px 0;
+  margin: 0 0 4px 0;
   line-height: 1.25;
 }
 
 .infra-card-body p {
-  font-size: 14px;
+  font-size: 13.5px;
   color: #64748b;
   margin: 0;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 /* --- SECTION 6: RELIABILITY CHECKLIST --- */
