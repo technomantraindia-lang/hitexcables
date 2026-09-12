@@ -1,0 +1,515 @@
+/* ==========================================================================
+   GALLERY PAGE - HITEX PLUS EXPLICIT DESIGN SYSTEM
+   ========================================================================== */
+
+.gal-page-root {
+  font-family: 'DM Sans', sans-serif;
+  color: #0f172a;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+.gal-page-root *,
+.gal-page-root *::before,
+.gal-page-root *::after {
+  box-sizing: border-box;
+}
+
+.gal-container {
+  width: min(1380px, calc(100% - 60px));
+  margin: 0 auto;
+}
+
+/* --- 1. HERO BANNER SECTION --- */
+.gal-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 460px;
+  background: linear-gradient(to right, rgba(2, 16, 27, 0.88) 0%, rgba(2, 16, 27, 0.6) 45%, rgba(2, 16, 27, 0.2) 80%),
+              url('/assets/gallery_banner_section.png') center / cover no-repeat;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 75px 0 55px 0;
+  overflow: hidden;
+}
+
+.gal-hero-content {
+  max-width: 1120px;
+  padding-left: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.gal-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 16px;
+}
+
+.gal-breadcrumb a {
+  color: #38bdf8;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.gal-breadcrumb a:hover {
+  opacity: 0.8;
+}
+
+.gal-crumb-sep {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.gal-crumb-current {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.gal-hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1.08;
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.8px;
+}
+
+.gal-hero-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: #38bdf8;
+  margin: 0 0 16px 0;
+  letter-spacing: 0.2px;
+}
+
+.gal-hero-desc {
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 32px 0;
+  max-width: 660px;
+}
+
+.gal-hero-badges {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: nowrap;
+}
+
+.gal-hero-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+.gal-badge-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  flex-shrink: 0;
+  color: #38bdf8;
+}
+
+/* --- 2. FILTER TABS STRIP --- */
+.gal-tabs-section {
+  padding: 45px 0 25px 0;
+  background: #ffffff;
+}
+
+.gal-tabs-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.gal-tab-btn {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 11px 26px;
+  border-radius: 50px;
+  border: 1px solid #e2e8f0;
+  background: #eaf2fa;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.gal-tab-btn:hover {
+  background: #008fa8;
+  color: #ffffff;
+  border-color: #008fa8;
+}
+
+.gal-tab-btn.active {
+  background: #0f2b48;
+  color: #ffffff;
+  border-color: #0f2b48;
+  box-shadow: 0 4px 14px rgba(15, 43, 72, 0.25);
+}
+
+/* --- 3. PHOTO GALLERY GRID --- */
+.gal-grid-section {
+  padding: 25px 0 85px 0;
+  background: #ffffff;
+}
+
+.gal-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.gal-photo-card {
+  position: relative;
+  background: #f8fafc;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  height: 250px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.gal-photo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 143, 168, 0.16);
+}
+
+.gal-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gal-photo-card:hover img {
+  transform: scale(1.06);
+}
+
+.gal-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(2, 16, 27, 0.85) 0%, rgba(2, 16, 27, 0.2) 60%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  color: #ffffff;
+}
+
+.gal-photo-card:hover .gal-photo-overlay {
+  opacity: 1;
+}
+
+.gal-photo-overlay span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #38bdf8;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.gal-photo-overlay h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0;
+  color: #ffffff;
+}
+
+.gal-zoom-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+/* --- LIGHTBOX MODAL --- */
+.gal-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(2, 16, 27, 0.92);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.gal-modal-content {
+  position: relative;
+  max-width: 1000px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.gal-modal-img {
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  display: block;
+}
+
+.gal-modal-caption {
+  padding: 20px 28px;
+  background: #0b2545;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gal-modal-caption h3 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  margin: 0 0 4px 0;
+}
+
+.gal-modal-caption p {
+  font-size: 14px;
+  color: #38bdf8;
+  margin: 0;
+}
+
+.gal-modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  z-index: 10;
+}
+
+.gal-modal-close-btn:hover {
+  background: #008fa8;
+}
+
+/* --- 4. BOTTOM CTA SECTION --- */
+.gal-cta-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 320px;
+  background: linear-gradient(to right, rgba(234, 244, 238, 0.95) 0%, rgba(234, 244, 238, 0.82) 45%, rgba(234, 244, 238, 0.2) 85%),
+              url('/assets/applicaton_cta_section.png') center / cover no-repeat;
+  color: #0b2545;
+  width: 100%;
+  padding: 60px 0;
+}
+
+.gal-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.gal-cta-left {
+  max-width: 600px;
+}
+
+.gal-cta-kicker {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  color: #007a5e;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.gal-cta-left h2 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  font-size: clamp(28px, 2.5vw, 38px);
+  margin: 0 0 12px 0;
+  color: #0b2545;
+  line-height: 1.15;
+}
+
+.gal-cta-left p {
+  font-size: 16px;
+  line-height: 1.55;
+  color: #334155;
+  font-weight: 500;
+  margin: 0 0 28px 0;
+}
+
+.gal-btn-green {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #00a884;
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(0, 168, 132, 0.35);
+}
+
+.gal-btn-green:hover {
+  background: #008f70;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 168, 132, 0.45);
+}
+
+.gal-cta-right-cards {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.gal-cta-feature-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 20px;
+  width: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.gal-cta-feature-card:hover {
+  transform: translateY(-4px);
+}
+
+.gal-cta-card-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00a884;
+}
+
+.gal-cta-feature-card span {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 14.5px;
+  color: #0f172a;
+  line-height: 1.25;
+}
+
+/* --- MOTION & REVEALS --- */
+.gal-reveal,
+.gal-reveal-left,
+.gal-reveal-right,
+.gal-reveal-scale {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gal-reveal {
+  transform: translateY(28px);
+}
+
+.gal-reveal-left {
+  transform: translateX(-35px);
+}
+
+.gal-reveal-right {
+  transform: translateX(35px);
+}
+
+.gal-reveal-scale {
+  transform: scale(0.96);
+}
+
+.gal-reveal.is-visible,
+.gal-reveal-left.is-visible,
+.gal-reveal-right.is-visible,
+.gal-reveal-scale.is-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 1024px) {
+  .gal-photos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gal-cta-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .gal-cta-left {
+    max-width: 100%;
+  }
+
+  .gal-cta-right-cards {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .gal-photos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gal-hero-title {
+    font-size: 38px;
+  }
+}

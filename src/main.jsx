@@ -30,6 +30,14 @@ import {
   Landmark,
   Server
 } from 'lucide-react';
+import AboutPage from './AboutPage.jsx';
+import ProductPage from './ProductPage.jsx';
+import TechnologyPage from './TechnologyPage.jsx';
+import InfrastructurePage from './InfrastructurePage.jsx';
+import CertificationsPage from './CertificationsPage.jsx';
+import ApplicationsPage from './ApplicationsPage.jsx';
+import ContactUsPage from './ContactUsPage.jsx';
+import GalleryPage from './GalleryPage.jsx';
 import './styles.css';
 
 const A = '/assets/';
@@ -66,8 +74,191 @@ function Button({ children, outline = false, className = '', ...props }) {
   );
 }
 
+function AnimatedCounter({ value }) {
+  const [displayValue, setDisplayValue] = React.useState(value);
+  const ref = React.useRef(null);
+  const animatedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const numericMatch = String(value).match(/([0-9.]+)/);
+    if (!numericMatch) {
+      setDisplayValue(value);
+      return;
+    }
+
+    const targetNum = parseFloat(numericMatch[0]);
+    const suffix = String(value).replace(numericMatch[0], '');
+    const isDecimal = numericMatch[0].includes('.');
+
+    setDisplayValue(isDecimal ? (0).toFixed(1) + suffix : '0' + suffix);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !animatedRef.current) {
+            animatedRef.current = true;
+            let startTime = null;
+            const duration = 1600;
+
+            const step = (timestamp) => {
+              if (!startTime) startTime = timestamp;
+              const progress = Math.min((timestamp - startTime) / duration, 1);
+              const easeOut = 1 - Math.pow(1 - progress, 3);
+              const current = easeOut * targetNum;
+
+              if (isDecimal) {
+                setDisplayValue(current.toFixed(1) + suffix);
+              } else {
+                setDisplayValue(Math.floor(current) + suffix);
+              }
+
+              if (progress < 1) {
+                requestAnimationFrame(step);
+              } else {
+                setDisplayValue(value);
+              }
+            };
+            requestAnimationFrame(step);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [value]);
+
+  return <span ref={ref}>{displayValue}</span>;
+}
+
 function App() {
   const [open, setOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [scrollProgress, setScrollProgress] = React.useState(0);
+  const [currentView, setCurrentView] = React.useState(() => {
+    if (window.location.pathname === '/products') return 'products';
+    if (window.location.pathname === '/technology') return 'technology';
+    if (window.location.pathname === '/infrastructure') return 'infrastructure';
+    if (window.location.pathname === '/certifications') return 'certifications';
+    if (window.location.pathname === '/applications') return 'applications';
+    if (window.location.pathname === '/gallery') return 'gallery';
+    if (window.location.pathname === '/contact-us' || window.location.pathname === '/contact') return 'contact';
+    return window.location.pathname === '/about' || window.location.hash === '#about-us-page' ? 'about' : 'home';
+  });
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 30);
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        setScrollProgress((window.scrollY / totalHeight) * 100);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  React.useEffect(() => {
+    if (currentView !== 'home') return;
+
+    const timer = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
+      );
+
+      const targets = document.querySelectorAll(
+        '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-stagger-item'
+      );
+      targets.forEach((target) => observer.observe(target));
+
+      return () => observer.disconnect();
+    }, 60);
+
+    return () => clearTimeout(timer);
+  }, [currentView]);
+
+  React.useEffect(() => {
+    const handlePopState = () => {
+      if (window.location.pathname === '/products') {
+        setCurrentView('products');
+      } else if (window.location.pathname === '/technology') {
+        setCurrentView('technology');
+      } else if (window.location.pathname === '/infrastructure') {
+        setCurrentView('infrastructure');
+      } else if (window.location.pathname === '/certifications') {
+        setCurrentView('certifications');
+      } else if (window.location.pathname === '/applications') {
+        setCurrentView('applications');
+      } else if (window.location.pathname === '/gallery') {
+        setCurrentView('gallery');
+      } else if (window.location.pathname === '/contact-us' || window.location.pathname === '/contact') {
+        setCurrentView('contact');
+      } else if (window.location.pathname === '/about' || window.location.hash === '#about-us-page') {
+        setCurrentView('about');
+      } else {
+        setCurrentView('home');
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleNavigate = (view, targetId = null) => {
+    setOpen(false);
+    setCurrentView(view);
+    if (view === 'products') {
+      window.history.pushState({}, '', '/products');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'technology') {
+      window.history.pushState({}, '', '/technology');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'infrastructure') {
+      window.history.pushState({}, '', '/infrastructure');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'certifications') {
+      window.history.pushState({}, '', '/certifications');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'applications') {
+      window.history.pushState({}, '', '/applications');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'gallery') {
+      window.history.pushState({}, '', '/gallery');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'contact') {
+      window.history.pushState({}, '', '/contact-us');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'about') {
+      window.history.pushState({}, '', '/about');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.history.pushState({}, '', '/');
+      if (targetId) {
+        setTimeout(() => {
+          const el = document.getElementById(targetId);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }, 60);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
 
   const products = [
     ['image 1.jpeg', 'PVC/XLPE Insulated Cables', 'Industrial & Heavy Duty', 'High Thermal Resistance'],
@@ -132,19 +323,20 @@ function App() {
 
   return (
     <div className="app-root">
+      <div className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
       {/* Header */}
-      <header className="header">
+      <header className={`header ${isScrolled ? 'is-scrolled' : ''}`}>
         <div className="header-top">
           <div className="header-logo-box">
-            <a href="#home">
+            <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}>
               <Logo />
             </a>
           </div>
           <div className="header-actions">
-            <a className="header-btn red" href="#certificates">
+            <a className="header-btn red" href="#certificates" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'certificates'); }}>
               DOWNLOAD BROCHURE <FileText size={16} />
             </a>
-            <a className="header-btn outline" href="#contact-us">
+            <a className="header-btn outline" href="#contact-us" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'contact-us'); }}>
               PARTNER WITH US <ArrowRight size={16} />
             </a>
           </div>
@@ -154,52 +346,96 @@ function App() {
         </div>
         <div className="nav">
           <nav className={open ? 'show' : ''}>
-            {['Home', 'About Us', 'Products', 'Why Choose Us', 'Infrastructure', 'Quality', 'Gallery', 'Contact Us'].map(
-              (n, i) => (
-                <a
-                  key={n}
-                  className={i === 0 ? 'active' : ''}
-                  href={'#' + n.toLowerCase().replaceAll(' ', '-')}
-                  onClick={() => setOpen(false)}
-                >
-                  {n}
-                </a>
-              )
+            {['Home', 'About Us', 'Products', 'Technology', 'Applications', 'Certifications', 'Infrastructure', 'Gallery', 'Contact Us'].map(
+              (n) => {
+                const targetId = n.toLowerCase().replaceAll(' ', '-');
+                const isActive = n === 'About Us' ? currentView === 'about' : n === 'Products' ? currentView === 'products' : n === 'Technology' ? currentView === 'technology' : n === 'Applications' ? currentView === 'applications' : n === 'Certifications' ? currentView === 'certifications' : n === 'Infrastructure' ? currentView === 'infrastructure' : n === 'Gallery' ? currentView === 'gallery' : n === 'Contact Us' ? currentView === 'contact' : (currentView === 'home' && n === 'Home');
+                return (
+                  <a
+                    key={n}
+                    className={isActive ? 'active' : ''}
+                    href={n === 'About Us' ? '/about' : n === 'Products' ? '/products' : n === 'Technology' ? '/technology' : n === 'Applications' ? '/applications' : n === 'Certifications' ? '/certifications' : n === 'Infrastructure' ? '/infrastructure' : n === 'Gallery' ? '/gallery' : n === 'Contact Us' ? '/contact-us' : '#' + targetId}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (n === 'Products') {
+                        handleNavigate('products');
+                      } else if (n === 'Technology') {
+                        handleNavigate('technology');
+                      } else if (n === 'Applications') {
+                        handleNavigate('applications');
+                      } else if (n === 'Certifications') {
+                        handleNavigate('certifications');
+                      } else if (n === 'Infrastructure') {
+                        handleNavigate('infrastructure');
+                      } else if (n === 'Gallery') {
+                        handleNavigate('gallery');
+                      } else if (n === 'Contact Us') {
+                        handleNavigate('contact');
+                      } else if (n === 'About Us') {
+                        handleNavigate('about');
+                      } else if (n === 'Home') {
+                        handleNavigate('home');
+                      } else {
+                        handleNavigate('home', targetId);
+                      }
+                    }}
+                  >
+                    {n}
+                  </a>
+                );
+              }
             )}
           </nav>
         </div>
       </header>
 
-      <main>
-        {/* Banner Section (Preserved as requested) */}
-        <section className="hero" id="home">
-          <div className="hero-copy">
-            <p className="kicker">SHIELD OF SAFETY</p>
-            <h1>
-              HITEX PLUS<br />
-              <em>WIRES &amp; CABLES</em>
-            </h1>
-            <p>
-              Manufacturing high quality PVC/XLPE insulated wires &amp; cables with latest technology for your homes, industries, agriculture &amp; infrastructure.
-            </p>
-            <div className="actions">
-              <Button>Explore Products</Button>
-              <Button outline>Contact Us</Button>
+      {currentView === 'gallery' ? (
+        <GalleryPage onNavigate={handleNavigate} />
+      ) : currentView === 'contact' ? (
+        <ContactUsPage onNavigate={handleNavigate} />
+      ) : currentView === 'applications' ? (
+        <ApplicationsPage onNavigate={handleNavigate} />
+      ) : currentView === 'certifications' ? (
+        <CertificationsPage onNavigate={handleNavigate} />
+      ) : currentView === 'infrastructure' ? (
+        <InfrastructurePage onNavigate={handleNavigate} />
+      ) : currentView === 'technology' ? (
+        <TechnologyPage onNavigate={handleNavigate} />
+      ) : currentView === 'products' ? (
+        <ProductPage onNavigate={handleNavigate} />
+      ) : currentView === 'about' ? (
+        <AboutPage onNavigate={(targetId) => handleNavigate('home', targetId)} />
+      ) : (
+        <main>
+          {/* Banner Section (Preserved as requested) */}
+          <section className="hero" id="home">
+            <div className="hero-copy">
+              <p className="kicker">SHIELD OF SAFETY</p>
+              <h1>
+                HITEX PLUS<br />
+                <em>WIRES &amp; CABLES</em>
+              </h1>
+              <p>
+                Manufacturing high quality PVC/XLPE insulated wires &amp; cables with latest technology for your homes, industries, agriculture &amp; infrastructure.
+              </p>
+              <div className="actions">
+                <Button onClick={() => handleNavigate('home', 'products')}>Explore Products</Button>
+                <Button outline onClick={() => handleNavigate('home', 'contact-us')}>Contact Us</Button>
+              </div>
             </div>
-          </div>
-          <div className="hero-art">
-            <img src={img(5)} alt="Hitex Cable Showcase" />
-          </div>
-        </section>
+            <div className="hero-art">
+              <img src={img(5)} alt="Hitex Cable Showcase" />
+            </div>
+          </section>
 
         {/* Certifications Bar */}
-        <section className="cert-strip container" id="certificates">
-          <div className="cert-header">
+        <section className="cert-strip container reveal" id="certificates">
+          <div className="cert-header reveal-left">
             <h3>CERTIFICATIONS &amp; GOVERNMENT APPROVALS</h3>
           </div>
           <div className="cert-grid">
             {certs.map(([iconPath, d, title]) => (
-              <div className="cert-item" key={title}>
+              <div className="cert-item reveal-stagger-item" key={title}>
                 <img src={iconPath} alt={title} className="cert-img" />
               </div>
             ))}
@@ -208,7 +444,7 @@ function App() {
 
         {/* Jay Cable / Welcome Section */}
         <section className="about container" id="about-us">
-          <div className="about-copy">
+          <div className="about-copy reveal-left">
             <div className="about-eyebrow">WELCOME TO</div>
             <h2 className="about-heading">JAY CABLE INDUSTRIES</h2>
             <p className="about-description">
@@ -218,26 +454,26 @@ function App() {
               {aboutStats.map(([n, d, IconComp, clr]) => (
                 <div key={n} className="stat-item">
                   <IconComp size={28} color={clr} strokeWidth={1.8} />
-                  <b>{n}</b>
+                  <b><AnimatedCounter value={n} /></b>
                   <small>{d}</small>
                 </div>
               ))}
             </div>
-            <a href="#about-us" className="about-pill-btn">
+            <a href="/about" className="about-pill-btn" onClick={(e) => { e.preventDefault(); handleNavigate('about'); }}>
               Learn More About Us <ArrowRight size={17} />
             </a>
           </div>
-          <div className="about-pics">
+          <div className="about-pics reveal-right">
             <img src={img(14)} alt="Jay Cable Industries factory building" />
             <img src={img(15)} alt="Jay Cable Industries entrance gate" />
           </div>
         </section>
 
         {/* Features Strip */}
-        <section className="feature-strip container">
+        <section className="feature-strip container reveal">
           <div className="feature-grid">
             {features.map(([t, d, iconPath]) => (
-              <div className="feature-card" key={t}>
+              <div className="feature-card reveal-stagger-item" key={t}>
                 <div className="feature-icon-wrapper">
                   <img src={iconPath} alt={t} />
                 </div>
@@ -252,14 +488,16 @@ function App() {
 
         {/* Products Section */}
         <section className="products-section container" id="products">
-          <SectionHeader
-            eyebrow="OUR PRODUCT RANGE"
-            title="ENGINEERED FOR SAFETY &amp; EFFICIENCY"
-            description="Explore our comprehensive range of high-performance wires and cables crafted for every application."
-          />
+          <div className="reveal">
+            <SectionHeader
+              eyebrow="OUR PRODUCT RANGE"
+              title="ENGINEERED FOR SAFETY &amp; EFFICIENCY"
+              description="Explore our comprehensive range of high-performance wires and cables crafted for every application."
+            />
+          </div>
           <div className="product-cards-grid">
             {products.map(([im, title, category, feature]) => (
-              <div className="product-card-item" key={title}>
+              <div className="product-card-item reveal-stagger-item" key={title}>
                 <div className="product-badge-tag">{category}</div>
                 <div className="product-img-box">
                   <img src={img(im.match(/\d+/)[0])} alt={title} />
@@ -281,7 +519,7 @@ function App() {
         {/* Why Choose Us */}
         <section className="why-section" id="why-choose-us">
           <div className="why-container">
-            <div className="why-header">
+            <div className="why-header reveal">
               <h2>WHY HITEX PLUS CABLE?</h2>
               <div className="why-title-line"></div>
             </div>
@@ -289,7 +527,7 @@ function App() {
               <div className="why-spacer"></div>
               <div className="why-cards-row">
                 {whyFeatures.map(([title, desc, IconComp]) => (
-                  <div className="why-card" key={title}>
+                  <div className="why-card reveal-stagger-item" key={title}>
                     <div className="why-card-icon">
                       <IconComp size={44} strokeWidth={2} />
                     </div>
@@ -305,13 +543,13 @@ function App() {
         {/* Powering What Matters Most Section */}
         <section className="industries-section" id="applications">
           <div className="industries-container">
-            <div className="industries-header">
+            <div className="industries-header reveal">
               <h2>POWERING WHAT MATTERS MOST</h2>
               <div className="industries-title-line"></div>
             </div>
             <div className="industries-cards-grid">
               {industries.map(([t, im, IconComp]) => (
-                <div className="industry-card-item" key={t}>
+                <div className="industry-card-item reveal-stagger-item" key={t}>
                   <div
                     className="industry-card-bg"
                     style={{ backgroundImage: `url("${im}")` }}
@@ -331,31 +569,31 @@ function App() {
 
         {/* Precision Infrastructure Banner */}
         <section className="precision-banner-section" id="infrastructure">
-          <div className="precision-banner-header">
+          <div className="precision-banner-header reveal">
             <h2>BUILT WITH PRECISION</h2>
             <div className="title-divider"></div>
             <p>State-of-the-art manufacturing for superior quality.</p>
           </div>
           <div
-            className="precision-banner-hero"
+            className="precision-banner-hero reveal-scale"
             style={{ backgroundImage: `url("${img(17)}")` }}
           >
             <div className="precision-banner-overlay"></div>
             <div className="precision-banner-stats-grid">
-              <div className="precision-banner-stat-card">
-                <div className="precision-stat-number">18+</div>
+              <div className="precision-banner-stat-card reveal-stagger-item">
+                <div className="precision-stat-number"><AnimatedCounter value="18+" /></div>
                 <div className="precision-stat-title">YEARS OF TRUST</div>
               </div>
-              <div className="precision-banner-stat-card">
-                <div className="precision-stat-number">100+</div>
+              <div className="precision-banner-stat-card reveal-stagger-item">
+                <div className="precision-stat-number"><AnimatedCounter value="100+" /></div>
                 <div className="precision-stat-title">PRODUCTS RANGE</div>
               </div>
-              <div className="precision-banner-stat-card">
-                <div className="precision-stat-number">2500+</div>
+              <div className="precision-banner-stat-card reveal-stagger-item">
+                <div className="precision-stat-number"><AnimatedCounter value="2500+" /></div>
                 <div className="precision-stat-title">PROJECTS DELIVERED</div>
               </div>
-              <div className="precision-banner-stat-card">
-                <div className="precision-stat-number">99.9%</div>
+              <div className="precision-banner-stat-card reveal-stagger-item">
+                <div className="precision-stat-number"><AnimatedCounter value="99.9%" /></div>
                 <div className="precision-stat-title">QUALITY ASSURED</div>
               </div>
             </div>
@@ -365,13 +603,13 @@ function App() {
         {/* Tested For Real-World Conditions */}
         <section className="testing-section" id="quality">
           <div className="testing-container">
-            <div className="testing-header">
+            <div className="testing-header reveal">
               <h2>TESTED FOR REAL-WORLD CONDITIONS</h2>
               <div className="testing-title-line"></div>
             </div>
             <div className="testing-cards-grid">
               {tests.map(([im, t, d]) => (
-                <div className="testing-card-item" key={t}>
+                <div className="testing-card-item reveal-stagger-item" key={t}>
                   <div className="testing-img-wrapper">
                     <img src={im} alt={t} />
                   </div>
@@ -388,48 +626,49 @@ function App() {
         {/* Gallery */}
         <section className="gallery-section" id="gallery">
           <div className="gallery-container">
-            <div className="gallery-header">
+            <div className="gallery-header reveal">
               <h2>GALLERY</h2>
               <div className="gallery-title-line"></div>
             </div>
             <div className="gallery-photos-grid">
               {gallery.map((n) => (
-                <div className="gallery-photo-item" key={n}>
+                <div className="gallery-photo-item reveal-stagger-item" key={n}>
                   <img src={img(n)} alt={`Hitex Cable Facility ${n}`} />
                 </div>
               ))}
             </div>
-            <div className="gallery-cta-wrapper">
-              <button className="gallery-pill-btn">
+            <div className="gallery-cta-wrapper reveal">
+              <button className="gallery-pill-btn" onClick={() => handleNavigate('gallery')}>
                 View More Photos <ArrowRight size={16} />
               </button>
             </div>
           </div>
         </section>
-      </main>
 
-      {/* CTA Banner */}
-      <section className="cta-banner-section" id="contact-us">
-        <div className="container cta-banner-inner">
-          <div className="cta-banner-left">
-            <div className="cta-phone-icon">
-              <Phone size={26} color="#005f75" />
+        {/* CTA Banner */}
+        <section className="cta-banner-section" id="contact-us">
+          <div className="container cta-banner-inner">
+            <div className="cta-banner-left reveal-left">
+              <div className="cta-phone-icon">
+                <Phone size={26} color="#005f75" />
+              </div>
+              <div>
+                <h2>Need Assistance or Custom Quotation?</h2>
+                <p>Our sales and technical support engineers are available to guide your cable requirements.</p>
+              </div>
             </div>
-            <div>
-              <h2>Need Assistance or Custom Quotation?</h2>
-              <p>Our sales and technical support engineers are available to guide your cable requirements.</p>
+            <div className="cta-banner-right reveal-right">
+              <a href="tel:7096567719" className="cta-call-btn">
+                Call Us: 7096567719 <Phone size={16} />
+              </a>
             </div>
           </div>
-          <div className="cta-banner-right">
-            <a href="tel:7096567719" className="cta-call-btn">
-              Call Us: 7096567719 <Phone size={16} />
-            </a>
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
+    )}
 
       {/* Footer */}
-      <footer className="site-footer">
+      <footer className="site-footer reveal">
         <div className="footer-main-grid container">
           <div className="footer-col-brand">
             <div className="footer-logo-wrapper">
@@ -451,21 +690,22 @@ function App() {
 
           <div className="footer-col-links">
             <h4>QUICK LINKS</h4>
-            <a href="#home">Home</a>
-            <a href="#about-us">About Us</a>
-            <a href="#products">Products</a>
-            <a href="#infrastructure">Infrastructure</a>
-            <a href="#quality">Quality Standards</a>
-            <a href="#gallery">Gallery</a>
+            <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}>Home</a>
+            <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('about'); }}>About Us</a>
+            <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('products'); }}>Products</a>
+            <a href="/technology" onClick={(e) => { e.preventDefault(); handleNavigate('technology'); }}>Technology</a>
+            <a href="#infrastructure" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'infrastructure'); }}>Infrastructure</a>
+            <a href="#quality" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'quality'); }}>Quality Standards</a>
+            <a href="#gallery" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'gallery'); }}>Gallery</a>
           </div>
 
           <div className="footer-col-links">
             <h4>OUR PRODUCTS</h4>
-            <a href="#products">PVC/XLPE Insulated Cables</a>
-            <a href="#products">3-Core Submersible Flat Cables</a>
-            <a href="#products">Multi Strand Flexible Cables</a>
-            <a href="#products">House Hold Wires</a>
-            <a href="#products">Solar &amp; Custom Cables</a>
+            <a href="#products" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'products'); }}>PVC/XLPE Insulated Cables</a>
+            <a href="#products" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'products'); }}>3-Core Submersible Flat Cables</a>
+            <a href="#products" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'products'); }}>Multi Strand Flexible Cables</a>
+            <a href="#products" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'products'); }}>House Hold Wires</a>
+            <a href="#products" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'products'); }}>Solar &amp; Custom Cables</a>
           </div>
 
           <div className="footer-col-contact">
