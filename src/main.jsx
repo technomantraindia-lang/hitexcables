@@ -43,6 +43,7 @@ import {
   Sparkles,
   Sprout,
   Store,
+  Sun,
   Truck,
   Users,
   Wrench,
