@@ -2050,7 +2050,7 @@ p {
 .products-section .product-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: 20px;
   width: 100%;
 }
 
@@ -2074,7 +2074,7 @@ p {
 
 /* Card Header Top Row */
 .hd-card-header {
-  padding: 20px 20px 12px 20px;
+  padding: 18px 16px 10px 16px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -2084,34 +2084,37 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   gap: 8px;
 }
 
 .hd-card-number {
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 14px;
   color: #ffffff;
   background: #005f75;
-  padding: 3px 12px;
+  padding: 4px 11px;
   border-radius: 10px;
   line-height: 1.2;
+  flex-shrink: 0;
 }
 
 .hd-card-badge {
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  font-size: 10.5px;
-  letter-spacing: 0.5px;
-  color: #ffffff;
-  background: #005f75;
-  padding: 5px 12px;
-  border-radius: 14px;
+  font-size: 10px;
+  letter-spacing: 0.4px;
+  color: #004c5e;
+  background: #e0f2fe;
+  border: 1px solid #7dd3fc;
+  padding: 4px 10px;
+  border-radius: 12px;
   text-transform: uppercase;
   text-align: right;
-  max-width: 200px;
-  line-height: 1.2;
+  line-height: 1.25;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .hd-card-title {
@@ -2137,17 +2140,17 @@ p {
 }
 
 .hd-card-tagline {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
-  color: #1e293b;
+  color: #334155;
   margin: 0;
   line-height: 1.35;
 }
 
 /* Image Box - Full Seamless Cable Showcase */
 .hd-card-img-box {
-  height: 200px;
-  background: #f0f9ff;
+  height: 190px;
+  background: #edf8fd;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2155,7 +2158,7 @@ p {
   margin: 8px 16px 14px 16px;
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid #bae6fd;
+  border: 1.5px solid #bae6fd;
 }
 
 .hd-card-img-box img {
@@ -2174,8 +2177,8 @@ p {
 .hd-stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  padding: 0 16px;
+  gap: 5px;
+  padding: 0 14px;
   margin-bottom: 14px;
 }
 
@@ -2183,11 +2186,13 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  padding: 10px 4px;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  padding: 8px 2px;
   border-radius: 12px;
+  min-height: 64px;
   transition: background 0.25s ease, border-color 0.25s ease;
 }
 
@@ -2198,26 +2203,32 @@ p {
 
 .hd-stat-pill svg {
   color: #005f75;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
+  flex-shrink: 0;
 }
 
 .hd-stat-pill span {
-  font-size: 11.5px;
+  font-size: 10.5px;
   font-weight: 800;
   color: #0f172a;
   line-height: 1.2;
   letter-spacing: -0.1px;
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-align: center;
+  display: block;
 }
 
 /* Key Features Section */
 .hd-section-block {
-  padding: 0 20px 14px 20px;
+  padding: 0 16px 14px 16px;
 }
 
 .hd-block-title {
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  font-size: 12.5px;
+  font-size: 12px;
   letter-spacing: 0.8px;
   color: #005f75;
   text-transform: uppercase;
@@ -2238,7 +2249,7 @@ p {
   color: #0f172a;
   font-weight: 700;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   line-height: 1.35;
 }
@@ -2246,40 +2257,45 @@ p {
 .hd-features-list li svg {
   color: #10b981;
   flex-shrink: 0;
+  margin-top: 2px;
 }
 
 /* Applications Row */
 .hd-apps-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  gap: 5px;
 }
 
 .hd-app-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   background: #e0f2fe;
-  border: 1px solid #bae6fd;
+  border: 1.5px solid #bae6fd;
   border-radius: 10px;
-  padding: 8px 3px;
+  padding: 8px 2px;
+  min-height: 52px;
 }
 
 .hd-app-item svg {
   color: #005f75;
   margin-bottom: 4px;
+  flex-shrink: 0;
 }
 
 .hd-app-item span {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
   color: #0f172a;
   line-height: 1.15;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
+  white-space: normal;
+  word-break: normal;
+  overflow: visible;
+  text-align: center;
+  display: block;
 }
 
 /* Card Button */
