@@ -1168,15 +1168,13 @@ function App() {
     )}
 
       {/* Footer */}
-      <footer className="site-footer reveal">
+      <footer className="site-footer">
         <div className="footer-main-grid container">
           <div className="footer-col-brand">
             <div className="footer-logo-wrapper">
-              <img
-                className="footer-brand-logo"
-                src={`${A}logo tranpect.png`}
-                alt="HITEX PLUS Wires & Cables"
-              />
+              <a href="/" onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}>
+                <Logo />
+              </a>
             </div>
             <p>
               HITEX PLUS wires &amp; cables are manufactured to ensure maximum conductivity, flame retardancy &amp; lifelong reliability across every project.
@@ -1194,18 +1192,18 @@ function App() {
             <a href="/about" onClick={(e) => { e.preventDefault(); handleNavigate('about'); }}>About Us</a>
             <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('products'); }}>Products</a>
             <a href="/technology" onClick={(e) => { e.preventDefault(); handleNavigate('technology'); }}>Technology</a>
-            <a href="#infrastructure" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'infrastructure'); }}>Infrastructure</a>
-            <a href="#quality" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'quality'); }}>Quality Standards</a>
-            <a href="#gallery" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'gallery'); }}>Gallery</a>
+            <a href="/infrastructure" onClick={(e) => { e.preventDefault(); handleNavigate('infrastructure'); }}>Infrastructure</a>
+            <a href="/certifications" onClick={(e) => { e.preventDefault(); handleNavigate('certifications'); }}>Certifications</a>
+            <a href="/gallery" onClick={(e) => { e.preventDefault(); handleNavigate('gallery'); }}>Gallery</a>
           </div>
 
           <div className="footer-col-links">
             <h4>OUR PRODUCTS</h4>
-            <a href="#products" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'products'); }}>PVC/XLPE Insulated Cables</a>
-            <a href="#products" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'products'); }}>3-Core Submersible Flat Cables</a>
-            <a href="#products" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'products'); }}>Multi Strand Flexible Cables</a>
-            <a href="#products" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'products'); }}>House Hold Wires</a>
-            <a href="#products" onClick={(e) => { e.preventDefault(); handleNavigate('home', 'products'); }}>Solar &amp; Custom Cables</a>
+            <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('products'); }}>PVC/XLPE Insulated Cables</a>
+            <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('products'); }}>3-Core Submersible Flat Cables</a>
+            <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('products'); }}>Multi Strand Flexible Cables</a>
+            <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('products'); }}>House Hold Wires</a>
+            <a href="/products" onClick={(e) => { e.preventDefault(); handleNavigate('products'); }}>Solar &amp; Custom Cables</a>
           </div>
 
           <div className="footer-col-contact">
