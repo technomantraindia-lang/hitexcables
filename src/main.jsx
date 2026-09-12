@@ -288,6 +288,133 @@ function IndustriesSlider({ items }) {
   );
 }
 
+function GallerySlider({ items, onNavigate }) {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isPaused, setIsPaused] = React.useState(false);
+  const [cardsToShow, setCardsToShow] = React.useState(4);
+  const touchStartX = React.useRef(0);
+  const touchEndX = React.useRef(0);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 640) {
+        setCardsToShow(1);
+      } else if (window.innerWidth <= 1024) {
+        setCardsToShow(2);
+      } else {
+        setCardsToShow(4);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, items.length - cardsToShow);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  React.useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused, maxIndex]);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 50) {
+      handleNext();
+    }
+    if (touchEndX.current - touchStartX.current > 50) {
+      handlePrev();
+    }
+  };
+
+  const translatePercent = currentIndex * (100 / cardsToShow);
+  const translateGap = currentIndex * (20 / cardsToShow);
+
+  return (
+    <section className="gallery-section" id="gallery">
+      <div className="gallery-container">
+        <div className="industries-header-row reveal">
+          <div className="gallery-header" style={{ textAlign: 'left', marginBottom: 0 }}>
+            <h2>GALLERY</h2>
+            <div className="gallery-title-line" style={{ margin: '6px 0 0 0' }}></div>
+          </div>
+          <div className="slider-nav-btns">
+            <button className="slider-nav-arrow" onClick={handlePrev} aria-label="Previous Gallery Photo">
+              <ChevronLeft size={22} color="#005f75" />
+            </button>
+            <button className="slider-nav-arrow" onClick={handleNext} aria-label="Next Gallery Photo">
+              <ChevronRight size={22} color="#005f75" />
+            </button>
+          </div>
+        </div>
+
+        <div
+          className="industries-slider-wrapper"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div
+            className="industries-slider-track"
+            style={{
+              transform: `translateX(calc(-${translatePercent}% - ${translateGap}px))`
+            }}
+          >
+            {items.map((n) => (
+              <div
+                className="gallery-photo-item slider-card-item reveal-stagger-item"
+                key={n}
+                style={{ flex: `0 0 calc(${100 / cardsToShow}% - ${(20 * (cardsToShow - 1)) / cardsToShow}px)` }}
+              >
+                <img src={img(n)} alt={`Hitex Cable Facility ${n}`} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {maxIndex > 0 && (
+          <div className="slider-dots-bar">
+            {[...Array(maxIndex + 1)].map((_, idx) => (
+              <button
+                key={idx}
+                className={`slider-dot-btn ${currentIndex === idx ? 'active' : ''}`}
+                onClick={() => setCurrentIndex(idx)}
+                aria-label={`Slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
+        <div className="gallery-cta-wrapper reveal" style={{ marginTop: '28px' }}>
+          <button className="gallery-pill-btn" onClick={() => onNavigate('gallery')}>
+            View More Photos <ArrowRight size={16} />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const [open, setOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -1015,27 +1142,8 @@ function App() {
           </div>
         </section>
 
-        {/* Gallery */}
-        <section className="gallery-section" id="gallery">
-          <div className="gallery-container">
-            <div className="gallery-header reveal">
-              <h2>GALLERY</h2>
-              <div className="gallery-title-line"></div>
-            </div>
-            <div className="gallery-photos-grid">
-              {gallery.map((n) => (
-                <div className="gallery-photo-item reveal-stagger-item" key={n}>
-                  <img src={img(n)} alt={`Hitex Cable Facility ${n}`} />
-                </div>
-              ))}
-            </div>
-            <div className="gallery-cta-wrapper reveal">
-              <button className="gallery-pill-btn" onClick={() => handleNavigate('gallery')}>
-                View More Photos <ArrowRight size={16} />
-              </button>
-            </div>
-          </div>
-        </section>
+        {/* Gallery 4-Card Slider */}
+        <GallerySlider items={gallery} onNavigate={handleNavigate} />
 
         {/* CTA Banner */}
         <section className="cta-banner-section" id="contact-us">
