@@ -214,6 +214,91 @@ function AboutIndustriesSlider() {
   );
 }
 
+function TestimonialsSlider() {
+  const testimonials = [
+    {
+      quote: `"HITEX PLUS has been our trusted partner for years. Their product quality, service and commitment to safety are truly commendable."`,
+      author: "— Project Head",
+      role: "Leading Infrastructure Company",
+      IconComp: HardHat
+    },
+    {
+      quote: `"Outstanding wiring performance and zero breakdown history across all our commercial high-rise projects. Highly recommended!"`,
+      author: "— Chief Electrical Engineer",
+      role: "Prime Developers Ltd.",
+      IconComp: Building2
+    },
+    {
+      quote: `"The heat resistance and durability of Hitex Plus cables in our industrial manufacturing plant have exceeded all quality standards."`,
+      author: "— Plant Maintenance Director",
+      role: "Apex Industrial Solutions",
+      IconComp: Factory
+    },
+    {
+      quote: `"Timely delivery, IS-certified reliability, and exceptional customer support. They are our go-to cable manufacturer for power grid projects."`,
+      author: "— Senior Procurement Manager",
+      role: "National Power Grid Projects",
+      IconComp: ShieldCheck
+    }
+  ];
+
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isPaused, setIsPaused] = React.useState(false);
+
+  React.useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isPaused, testimonials.length]);
+
+  const current = testimonials[currentIndex];
+  const IconComponent = current.IconComp;
+
+  return (
+    <section className="ab-testi-section">
+      <div className="about-container ab-testi-layout">
+        <div className="ab-testi-intro ab-reveal-left">
+          <span className="ab-eyebrow" style={{ color: '#008fa8' }}>WHAT OUR CLIENTS SAY</span>
+          <h2>Trusted by Industries. <span style={{ color: '#005f75' }}>Valued by Customers.</span></h2>
+        </div>
+
+        <article
+          className="ab-testi-card ab-reveal-right"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <Quote className="ab-testi-quote-mark" size={32} aria-hidden="true" />
+          <div className="ab-testi-avatar" aria-hidden="true">
+            <IconComponent size={38} strokeWidth={1.7} />
+          </div>
+          <div className="ab-testi-content">
+            <p className="ab-testi-quote">{current.quote}</p>
+            <div className="ab-testi-author">
+              <strong>{current.author}</strong>
+              <small>{current.role}</small>
+            </div>
+          </div>
+
+          <div className="ab-testi-controls-row">
+            <div className="ab-testi-dots" aria-label="Testimonial Navigation">
+              {testimonials.map((_, idx) => (
+                <button
+                  key={idx}
+                  className={`ab-testi-dot-btn ${currentIndex === idx ? 'active' : ''}`}
+                  onClick={() => setCurrentIndex(idx)}
+                  aria-label={`Go to testimonial ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  );
+}
+
 export default function AboutPage({ onNavigate }) {
   const [isPlayingIntroVideo, setIsPlayingIntroVideo] = React.useState(false);
   const [isPlayingMfgVideo, setIsPlayingMfgVideo] = React.useState(false);
@@ -818,35 +903,9 @@ export default function AboutPage({ onNavigate }) {
       </section>
 
       {/* -------------------------------------------------------------------------- */}
-      {/* 9. TESTIMONIALS                                                            */}
+      {/* 9. TESTIMONIALS SLIDER                                                     */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="ab-testi-section">
-        <div className="about-container ab-testi-layout">
-          <div className="ab-testi-intro ab-reveal-left">
-            <span className="ab-eyebrow">WHAT OUR CLIENTS SAY</span>
-            <h2>Trusted by Industries. <span>Valued by Customers.</span></h2>
-          </div>
-
-          <article className="ab-testi-card ab-reveal-right">
-            <Quote className="ab-testi-quote-mark" size={30} aria-hidden="true" />
-            <div className="ab-testi-avatar" aria-hidden="true">
-              <HardHat size={42} strokeWidth={1.7} />
-            </div>
-            <div className="ab-testi-content">
-              <p className="ab-testi-quote">
-                "HITEX PLUS has been our trusted partner for years. Their product quality, service and commitment to safety are truly commendable."
-              </p>
-              <div className="ab-testi-author">
-                <strong>— Project Head</strong>
-                <small>Leading Infrastructure Company</small>
-              </div>
-            </div>
-            <div className="ab-testi-dots" aria-label="Testimonial 1 of 3">
-              <span className="active"></span><span></span><span></span>
-            </div>
-          </article>
-        </div>
-      </section>
+      <TestimonialsSlider />
 
       {/* -------------------------------------------------------------------------- */}
       {/* 10. BOTTOM CTA                                                             */}
