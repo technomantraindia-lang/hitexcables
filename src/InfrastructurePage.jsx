@@ -36,6 +36,134 @@ import './InfrastructurePage.css';
 
 const A = '/assets/';
 
+function InfraSlider({ title, subtitle, caption, items, sectionClass = '' }) {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [isPaused, setIsPaused] = React.useState(false);
+  const [cardsToShow, setCardsToShow] = React.useState(4);
+  const touchStartX = React.useRef(0);
+  const touchEndX = React.useRef(0);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 640) {
+        setCardsToShow(1);
+      } else if (window.innerWidth <= 1024) {
+        setCardsToShow(2);
+      } else {
+        setCardsToShow(4);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, items.length - cardsToShow);
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  React.useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isPaused, maxIndex]);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 50) {
+      handleNext();
+    }
+    if (touchEndX.current - touchStartX.current > 50) {
+      handlePrev();
+    }
+  };
+
+  const translatePercent = currentIndex * (100 / cardsToShow);
+  const translateGap = currentIndex * (20 / cardsToShow);
+
+  return (
+    <section className={`infra-section ${sectionClass}`}>
+      <div className="infra-container">
+        <div className="infra-section-header infra-reveal">
+          <div>
+            <h2 className="infra-section-h2">{title}</h2>
+            <p className="infra-section-p">{subtitle}</p>
+          </div>
+          <div className="infra-nav-controls">
+            {caption && <span className="infra-nav-caption">{caption}</span>}
+            <button className="infra-arrow-btn" onClick={handlePrev} aria-label="Previous card">
+              <ChevronLeft size={18} />
+            </button>
+            <button className="infra-arrow-btn" onClick={handleNext} aria-label="Next card">
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
+
+        <div
+          className="infra-slider-wrapper infra-reveal-scale"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div
+            className="infra-slider-track"
+            style={{
+              transform: `translateX(calc(-${translatePercent}% - ${translateGap}px))`
+            }}
+          >
+            {items.map((m, idx) => (
+              <div
+                className="infra-card slider-card-item"
+                key={idx}
+                style={{ flex: `0 0 calc(${100 / cardsToShow}% - ${(20 * (cardsToShow - 1)) / cardsToShow}px)` }}
+              >
+                <div className="infra-card-img-box">
+                  <img src={m.img} alt={m.title} />
+                </div>
+                <div className="infra-card-body">
+                  <h4>{m.title}</h4>
+                  <p>{m.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {maxIndex > 0 && (
+          <div className="slider-dots-bar" style={{ marginTop: '24px' }}>
+            {[...Array(maxIndex + 1)].map((_, idx) => (
+              <button
+                key={idx}
+                className={`slider-dot-btn ${currentIndex === idx ? 'active' : ''}`}
+                onClick={() => setCurrentIndex(idx)}
+                aria-label={`Slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export default function InfrastructurePage({ onNavigate }) {
   const [prodIndex, setProdIndex] = React.useState(0);
   const [testIndex, setTestIndex] = React.useState(0);
@@ -296,106 +424,26 @@ export default function InfrastructurePage({ onNavigate }) {
       </section>
 
       {/* -------------------------------------------------------------------------- */}
-      {/* SECTION 4: PRODUCTION FACILITIES                                           */}
+      {/* SECTION 4: PRODUCTION FACILITIES - 4 CARD SLIDER                           */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="infra-section infra-production-section">
-        <div className="infra-container">
-          <div className="infra-section-header infra-reveal">
-            <div>
-              <h2 className="infra-section-h2">PRODUCTION FACILITIES</h2>
-              <p className="infra-section-p">Advanced manufacturing systems for high-performance wires and cables.</p>
-            </div>
-            <div className="infra-nav-controls">
-              <span className="infra-nav-caption">Our Production Setup Reflects Our Commitment to Quality</span>
-              <button
-                className="infra-arrow-btn"
-                onClick={() => {
-                  const el = document.getElementById('prod-facilities-scroll');
-                  if (el) el.scrollBy({ left: -320, behavior: 'smooth' });
-                }}
-                aria-label="Previous facility"
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <button
-                className="infra-arrow-btn"
-                onClick={() => {
-                  const el = document.getElementById('prod-facilities-scroll');
-                  if (el) el.scrollBy({ left: 320, behavior: 'smooth' });
-                }}
-                aria-label="Next facility"
-              >
-                <ChevronRight size={18} />
-              </button>
-            </div>
-          </div>
-
-          <div className="infra-cards-grid infra-reveal-scale" id="prod-facilities-scroll">
-            {productionMachines.map((m, idx) => (
-              <div className="infra-card" key={idx}>
-                <div className="infra-card-img-box">
-                  <img src={m.img} alt={m.title} />
-                </div>
-                <div className="infra-card-body">
-                  <h4>{m.title}</h4>
-                  <p>{m.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <InfraSlider
+        title="PRODUCTION FACILITIES"
+        subtitle="Advanced manufacturing systems for high-performance wires and cables."
+        caption="Our Production Setup Reflects Our Commitment to Quality"
+        items={productionMachines}
+        sectionClass="infra-production-section"
+      />
 
       {/* -------------------------------------------------------------------------- */}
-      {/* SECTION 5: LABORATORY & TESTING INFRASTRUCTURE                            */}
+      {/* SECTION 5: LABORATORY & TESTING INFRASTRUCTURE - 4 CARD SLIDER           */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="infra-section infra-testing-section">
-        <div className="infra-container">
-          <div className="infra-section-header infra-reveal">
-            <div>
-              <h2 className="infra-section-h2">LABORATORY &amp; TESTING INFRASTRUCTURE</h2>
-              <p className="infra-section-p">Well-equipped in-house laboratory to ensure highest quality and compliance.</p>
-            </div>
-            <div className="infra-nav-controls">
-              <span className="infra-nav-caption">Testing Today for a Safer Tomorrow</span>
-              <button
-                className="infra-arrow-btn"
-                onClick={() => {
-                  const el = document.getElementById('test-facilities-scroll');
-                  if (el) el.scrollBy({ left: -320, behavior: 'smooth' });
-                }}
-                aria-label="Previous test equipment"
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <button
-                className="infra-arrow-btn"
-                onClick={() => {
-                  const el = document.getElementById('test-facilities-scroll');
-                  if (el) el.scrollBy({ left: 320, behavior: 'smooth' });
-                }}
-                aria-label="Next test equipment"
-              >
-                <ChevronRight size={18} />
-              </button>
-            </div>
-          </div>
-
-          <div className="infra-cards-grid-5 infra-reveal-scale" id="test-facilities-scroll">
-            {testingEquipment.map((t, idx) => (
-              <div className="infra-card" key={idx}>
-                <div className="infra-card-img-box">
-                  <img src={t.img} alt={t.title} />
-                </div>
-                <div className="infra-card-body">
-                  <h4>{t.title}</h4>
-                  <p>{t.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <InfraSlider
+        title="LABORATORY & TESTING INFRASTRUCTURE"
+        subtitle="Well-equipped in-house laboratory to ensure highest quality and compliance."
+        caption="Testing Today for a Safer Tomorrow"
+        items={testingEquipment}
+        sectionClass="infra-testing-section"
+      />
 
       {/* -------------------------------------------------------------------------- */}
       {/* SECTION 6: OUR TESTING INFRASTRUCTURE ENSURES TOTAL RELIABILITY            */}
