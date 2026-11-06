@@ -37,7 +37,7 @@ const wireVideos = [
     title: 'Cable Extrusion Process',
     desc: 'High-speed continuous copper wire drawing, heating, and precision PVC insulation extrusion.',
     src: '/assets/videos/video_1.mp4',
-    poster: '/assets/product_details/extrusion_poster.webp'
+    poster: '/assets/product_details/professional_video_thumbnail.webp'
   },
   {
     id: 'stranding',
@@ -568,6 +568,7 @@ export default function ProductDetailsPage({ productId, onNavigate, onSelectProd
                   <video
                     key={wireVideos[activeVideoIdx].src}
                     src={wireVideos[activeVideoIdx].src}
+                    poster={wireVideos[activeVideoIdx].poster}
                     controls
                     autoPlay
                     className="pdp-html5-video"
@@ -611,7 +612,6 @@ export default function ProductDetailsPage({ productId, onNavigate, onSelectProd
                   className={`pdp-video-pill ${activeVideoIdx === idx ? 'active' : ''}`}
                   onClick={() => {
                     setActiveVideoIdx(idx);
-                    setIsPlayingVideo(true);
                   }}
                   title={`Watch ${vid.title}`}
                 >
