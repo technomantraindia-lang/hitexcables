@@ -171,8 +171,8 @@ export default function ContactUsPage({ onNavigate }) {
                 <MapPin size={24} strokeWidth={1.8} />
               </div>
               <h3>Our Location</h3>
-              <p>Jay cable industries, to gamij road,</p>
-              <p>Chandial, Pasuniya, Gujarat 382433</p>
+              <p>Khatano no-234, Survey no-64,</p>
+              <p>Chandiyel to Gamji Road, Village-Pasuniya, Ta-Dahegam, Gandhinagar - 382433</p>
             </div>
 
             <div className="cnt-info-card">
@@ -303,13 +303,6 @@ export default function ContactUsPage({ onNavigate }) {
                   <h3>Our Office</h3>
                   <h4>Visit Us</h4>
                   <div className="cnt-office-details">
-                    <div className="cnt-office-item" style={{ alignItems: 'flex-start' }}>
-                      <MapPin size={18} color="#008fa8" style={{ flexShrink: 0, marginTop: '3px' }} />
-                      <span>
-                        Jay cable industries, to gamij road, Chandial, Pasuniya, Gujarat 382433
-                      </span>
-                    </div>
-
                     <div className="cnt-office-item" style={{ alignItems: 'flex-start' }}>
                       <MapPin size={18} color="#008fa8" style={{ flexShrink: 0, marginTop: '3px' }} />
                       <span>
