@@ -50,8 +50,7 @@ export default function GalleryPage({ onNavigate }) {
     'Manufacturing',
     'Products',
     'Infrastructure',
-    'Quality Testing',
-    'Applications'
+    'Quality Testing'
   ];
 
   const galleryItems = [
@@ -204,34 +203,6 @@ export default function GalleryPage({ onNavigate }) {
        2. EXCLUSIVE PLANT & PRODUCT GALLERY PHOTOS (NON-HOMEPAGE)
        ========================================================================== */
     {
-      id: 'mfg-wire-drawing',
-      type: 'photo',
-      title: 'High-Speed Copper Conductor Wire Drawing & Annealing Line',
-      category: 'Manufacturing',
-      src: '/assets/mfg_wire_drawing.jpg'
-    },
-    {
-      id: 'mfg-cable-extrusion',
-      type: 'photo',
-      title: 'Continuous High-Speed PVC & XLPE Cable Extrusion Line',
-      category: 'Manufacturing',
-      src: '/assets/mfg_cable_extrusion.jpg'
-    },
-    {
-      id: 'mfg-cable-armoring',
-      type: 'photo',
-      title: 'Heavy-Duty Steel Wire & Strip Cable Armoring Machine',
-      category: 'Manufacturing',
-      src: '/assets/mfg_cable_armoring.jpg'
-    },
-    {
-      id: 'mfg-drum-winding',
-      type: 'photo',
-      title: 'Automated Industrial Cable Drum Take-Up & Spooling Unit',
-      category: 'Manufacturing',
-      src: '/assets/mfg_drum_winding.jpg'
-    },
-    {
       id: 'im-1',
       type: 'photo',
       title: 'Heavy Duty PVC & XLPE Industrial Power Cables',
@@ -329,125 +300,9 @@ export default function GalleryPage({ onNavigate }) {
       category: 'Manufacturing',
       src: '/assets/image 23.jpeg'
     },
-            /* ==========================================================================
-       3. CABLE APPLICATION SECTORS & PROJECT SITES
-       ========================================================================== */
-    {
-      id: 'app-residential',
-      type: 'photo',
-      title: 'Residential Complexes & Concealed Home Wiring',
-      category: 'Applications',
-      src: '/assets/app_crops/app_1.png'
-    },
-    {
-      id: 'app-commercial',
-      type: 'photo',
-      title: 'Commercial High-Rises, IT Hubs & Shopping Centers',
-      category: 'Applications',
-      src: '/assets/app_crops/app_2.png'
-    },
-    {
-      id: 'app-industrial',
-      type: 'photo',
-      title: 'Heavy Industrial Plants & Production Facilities',
-      category: 'Applications',
-      src: '/assets/app_crops/app_3.png'
-    },
-    {
-      id: 'app-infrastructure',
-      type: 'photo',
-      title: 'Smart City Power Grids & Infrastructure Projects',
-      category: 'Applications',
-      src: '/assets/app_crops/app_4.png'
-    },
-    {
-      id: 'app-healthcare',
-      type: 'photo',
-      title: 'Critical Healthcare Facilities & Hospitals',
-      category: 'Applications',
-      src: '/assets/app_crops/app_5.png'
-    },
-    {
-      id: 'app-datacenters',
-      type: 'photo',
-      title: 'High-Density Data Centers & Telecommunications',
-      category: 'Applications',
-      src: '/assets/app_crops/app_6.png'
-    },
-    {
-      id: 'app-renewable',
-      type: 'photo',
-      title: 'Utility Scale Solar Parks & Renewable Energy Plants',
-      category: 'Applications',
-      src: '/assets/app_crops/app_7.png'
-    },
-    {
-      id: 'app-railways',
-      type: 'photo',
-      title: 'Electric Railways & Overhead Catenary Transmission',
-      category: 'Applications',
-      src: '/assets/app_crops/app_8.png'
-    },
-    {
-      id: 'app-oilgas',
-      type: 'photo',
-      title: 'Oil & Gas Refineries & Petrochemical Plants',
-      category: 'Applications',
-      src: '/assets/app_crops/app_9.png'
-    },
-    {
-      id: 'app-agriculture',
-      type: 'photo',
-      title: 'Agricultural Irrigation & Solar Submersible Water Pumps',
-      category: 'Applications',
-      src: '/assets/app_agriculture_irrigation.jpg'
-    },
-    {
-      id: 'app-metro',
-      type: 'photo',
-      title: 'Urban High-Speed Metro Rail Electrification Transit',
-      category: 'Applications',
-      src: '/assets/app_metro_rail_transit.jpg'
-    },
-    {
-      id: 'app-sust',
-      type: 'photo',
-      title: 'Renewable Solar Power & Sustainable Energy',
-      category: 'Applications',
-      src: '/assets/sustainable.png'
-    },
-
     /* ==========================================================================
-       4. ACCREDITED QUALITY TESTING & LABORATORY PROCEDURES
+       3. ACCREDITED QUALITY TESTING & LABORATORY PROCEDURES
        ========================================================================== */
-    {
-      id: 'qt-tensile',
-      type: 'photo',
-      title: 'Computerized Universal Testing Machine (UTM) - Tensile & Elongation',
-      category: 'Quality Testing',
-      src: '/assets/qt_tensile_testing.jpg'
-    },
-    {
-      id: 'qt-flame',
-      type: 'photo',
-      title: 'Limiting Oxygen Index (LOI) & Vertical Flammability Chamber',
-      category: 'Quality Testing',
-      src: '/assets/qt_flammability_test.jpg'
-    },
-    {
-      id: 'qt-resistance',
-      type: 'photo',
-      title: 'Digital Kelvin Double Bridge Conductor Electrical Resistance Test',
-      category: 'Quality Testing',
-      src: '/assets/qt_conductor_resistance.jpg'
-    },
-    {
-      id: 'qt-hv-spark',
-      type: 'photo',
-      title: 'High Voltage Dielectric Breakdown & Spark Withstand Station',
-      category: 'Quality Testing',
-      src: '/assets/qt_high_voltage_spark.jpg'
-    },
     {
       id: 'qt-hv-set',
       type: 'photo',
