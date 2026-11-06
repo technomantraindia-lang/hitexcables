@@ -1396,7 +1396,7 @@ function App() {
 
           <div className="footer-col-contact">
             <h4>CONTACT US</h4>
-            <p style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}><MapPin size={16} style={{ flexShrink: 0, marginTop: '3px' }} /> <span>Khata no-234, Survey no-64, Chandiyel to Gamji Road, Village-Pasuniya, Ta-Dahegam, Di-Gandhinagar-382433</span></p>
+            <p style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}><MapPin size={16} style={{ flexShrink: 0, marginTop: '3px' }} /> <span>Jay Cable Industries, Khata no-234, Survey no-64, Chandiyel to Gamji Road, Village-Pasuniya, Ta-Dahegam, Di-Gandhinagar-382433</span></p>
             <p><Phone size={16} /> +91 70965 67719 / 98252 67719</p>
             <p><Mail size={16} /> <a href="mailto:info@hitexplus.com" style={{ color: "inherit", textDecoration: "none" }}>info@hitexplus.com</a></p>
           </div>
