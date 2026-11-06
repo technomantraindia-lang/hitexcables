@@ -171,7 +171,7 @@ export default function ContactUsPage({ onNavigate }) {
                 <MapPin size={24} strokeWidth={1.8} />
               </div>
               <h3>Our Location</h3>
-              <p>Khatano no-234, Survey no-64,</p>
+              <p>Khata no-234, Survey no-64,</p>
               <p>Chandiyel to Gamji Road, Village-Pasuniya, Ta-Dahegam, Gandhinagar - 382433</p>
             </div>
 
@@ -306,7 +306,7 @@ export default function ContactUsPage({ onNavigate }) {
                     <div className="cnt-office-item" style={{ alignItems: 'flex-start' }}>
                       <MapPin size={18} color="#008fa8" style={{ flexShrink: 0, marginTop: '3px' }} />
                       <span>
-                        Khatano no-234, Survey no-64, Chandiyel to Gamji Road, Village-Pasuniya, Ta-Dahegam, Di-Gandhinagar-382433
+                        Khata no-234, Survey no-64, Chandiyel to Gamji Road, Village-Pasuniya, Ta-Dahegam, Di-Gandhinagar-382433
                       </span>
                     </div>
 
