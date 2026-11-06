@@ -750,33 +750,6 @@ function App() {
     },
     {
       num: '07',
-      title: 'Cop.Allu Unarm ARM Cables',
-      titleHighlight: 'Unarm ARM Cables',
-      subtitle: 'Engineered for Higher Performance',
-      tagline: 'Advanced Insulation. Maximum Safety.',
-      badge: 'ENGINEERED FOR EXCELLENCE',
-      img: `${A}xlpe_cop_allu_unarm_arm_cable.jpg`,
-      stats: [
-        { icon: Award, text: 'High Performance' },
-        { icon: Flame, text: 'Thermal Stability' },
-        { icon: Sun, text: 'Weather Resistant' },
-        { icon: Clock, text: 'Long Life' }
-      ],
-      features: [
-        'XLPE Insulation',
-        'Copper/Aluminium Conductor',
-        'Unarmoured/Armoured Options',
-        'High Temperature & Load Capacity'
-      ],
-      applications: [
-        { icon: Zap, label: 'Power Distribution' },
-        { icon: Factory, label: 'Industrial Use' },
-        { icon: Landmark, label: 'Infrastructure' },
-        { icon: Server, label: 'Utility Networks' }
-      ]
-    },
-    {
-      num: '08',
       title: 'Solar DC Cable',
       titleHighlight: 'DC Cable',
       subtitle: 'Powering Renewable Energy',
@@ -1186,8 +1159,7 @@ function App() {
                       '04': 'xlpe-armoured-cable',
                       '05': 'specialty-cables',
                       '06': 'industrial-cables',
-                      '07': 'fire-survival-cables',
-                      '08': 'solar-dc-cable'
+                      '07': 'solar-dc-cable'
                     };
                     const targetProductSlug = homeCardSlugMap[card.num] || 'house-wires';
                     return (
