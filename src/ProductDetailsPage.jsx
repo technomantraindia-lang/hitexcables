@@ -194,6 +194,18 @@ export default function ProductDetailsPage({ productId, onNavigate, onSelectProd
     }
   }, [productId]);
 
+  // Preload all gallery images immediately on product load so thumbnail clicks are instantaneous
+  useEffect(() => {
+    if (product && product.gallery && Array.isArray(product.gallery)) {
+      product.gallery.forEach((item) => {
+        if (item.full) {
+          const preImg = new Image();
+          preImg.src = item.full;
+        }
+      });
+    }
+  }, [product]);
+
   const handleSelectProduct = (newId) => {
     setCurrentId(newId);
     setActiveImageIdx(0);
@@ -324,7 +336,15 @@ export default function ProductDetailsPage({ productId, onNavigate, onSelectProd
               src={currentGalleryImage.full}
               alt={currentGalleryImage.alt || product.name}
               className="pdp-main-img"
+              key={currentGalleryImage.full}
+              decoding="async"
             />
+            {/* Eagerly preload all gallery images in DOM for 0ms instantaneous switching */}
+            <div style={{ display: 'none' }} aria-hidden="true">
+              {product.gallery.map((img) => (
+                <img key={img.id} src={img.full} alt="" loading="eager" decoding="async" />
+              ))}
+            </div>
           </div>
 
           {/* Vertical Thumbnail Strip */}

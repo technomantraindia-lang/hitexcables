@@ -48,19 +48,19 @@ export const productsData = [
       {
         id: 0,
         thumb: `${P}thumb1_red.png`,
-        full: `${P}main_red_coil.png`,
+        full: `${P}main_red_coil.webp`,
         alt: 'HITEX PLUS Premium Copper House Wire - Red 90m Coil'
       },
       {
         id: 1,
         thumb: `${P}thumb2_blue.png`,
-        full: `${P}main_blue_coil.png`,
+        full: `${P}main_blue_coil.webp`,
         alt: 'HITEX PLUS Premium Copper House Wire - Blue 90m Coil'
       },
       {
         id: 2,
         thumb: `${P}thumb3_stripped.png`,
-        full: `${P}main_stripped.png`,
+        full: `${P}main_stripped.webp`,
         alt: 'HITEX PLUS Stripped Copper Wire Strands'
       },
       {
