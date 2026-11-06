@@ -37,21 +37,21 @@ const wireVideos = [
     title: 'Cable Extrusion Process',
     desc: 'High-speed continuous copper wire drawing, heating, and precision PVC insulation extrusion.',
     src: '/assets/videos/video_1.mp4',
-    poster: '/assets/product_details/professional_video_thumbnail.webp'
+    poster: '/assets/product_details/thumb_cable_extrusion.webp'
   },
   {
     id: 'stranding',
     title: 'Wire Bunching & Stranding',
     desc: 'Multi-strand electrolytic copper conductor bunching and high-precision twisting line.',
     src: '/assets/videos/video_2.mp4',
-    poster: '/assets/product_details/stranding_poster.webp'
+    poster: '/assets/product_details/thumb_wire_stranding.webp'
   },
   {
     id: 'coiling',
     title: 'Automated Coiling & Packing',
     desc: 'Automated 90-meter coil winding, length metering, and protective shrink-wrap packaging unit.',
     src: '/assets/videos/video_4.mp4',
-    poster: '/assets/product_details/coiling_poster.webp'
+    poster: '/assets/product_details/thumb_automated_coiling.webp'
   }
 ];
 
@@ -597,6 +597,9 @@ export default function ProductDetailsPage({ productId, onNavigate, onSelectProd
                   <div className="pdp-video-badge-overlay">
                     <span>{wireVideos[activeVideoIdx].title}</span>
                   </div>
+                  <div className="pdp-video-quality-tag">
+                    <span>HD 1080p</span>
+                  </div>
                   <div className="pdp-play-btn-circle" aria-hidden="true">
                     <Play size={26} className="pdp-play-triangle" fill="#005f75" color="#005f75" />
                   </div>
@@ -610,10 +613,8 @@ export default function ProductDetailsPage({ productId, onNavigate, onSelectProd
                 <button
                   key={vid.id}
                   className={`pdp-video-pill ${activeVideoIdx === idx ? 'active' : ''}`}
-                  onClick={() => {
-                    setActiveVideoIdx(idx);
-                  }}
-                  title={`Watch ${vid.title}`}
+                  onClick={() => setActiveVideoIdx(idx)}
+                  title={`View ${vid.title}`}
                 >
                   <Play size={12} fill={activeVideoIdx === idx ? '#ffffff' : '#005f75'} />
                   <span>{vid.title}</span>

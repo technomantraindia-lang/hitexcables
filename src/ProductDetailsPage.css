@@ -811,13 +811,22 @@
   background: var(--pdp-red);
 }
 
+.pdp-video-poster-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 43, 54, 0.28) 0%, rgba(0, 0, 0, 0) 45%, rgba(6, 43, 54, 0.55) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .pdp-video-badge-overlay {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(0, 95, 117, 0.88);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(0, 95, 117, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: #ffffff;
   padding: 6px 14px;
   border-radius: 20px;
@@ -827,7 +836,25 @@
   letter-spacing: 0.5px;
   z-index: 2;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.pdp-video-quality-tag {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #00d2aa;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  z-index: 2;
+  border: 1px solid rgba(0, 210, 170, 0.4);
 }
 
 .pdp-video-switcher-pills {
