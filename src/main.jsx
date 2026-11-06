@@ -723,8 +723,8 @@ function App() {
     },
     {
       num: '06',
-      title: 'Armoured / Unarmoured Cables',
-      titleHighlight: 'Unarmoured Cables',
+      title: 'Unarmoured Cables',
+      titleHighlight: 'Cables',
       subtitle: 'Built for Every Environment',
       tagline: 'Strength. Safety. Versatility.',
       badge: 'VERSATILE POWER SOLUTIONS',
