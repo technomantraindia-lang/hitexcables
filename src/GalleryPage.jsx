@@ -252,13 +252,6 @@ export default function GalleryPage({ onNavigate }) {
       src: '/assets/wire image.png'
     },
     {
-      id: 'im-16',
-      type: 'photo',
-      title: 'Jay Cable Industries Modern Plant Overview',
-      category: 'Infrastructure',
-      src: '/assets/image 16.jpeg'
-    },
-    {
       id: 'im-18',
       type: 'photo',
       title: 'High Speed Wire Bunching & Twisting Line',
@@ -344,13 +337,6 @@ export default function GalleryPage({ onNavigate }) {
       title: 'XLPE Hot Set Thermal Elongation & Permanent Set Tester',
       category: 'Quality Testing',
       src: '/assets/infra/test_8.png'
-    },
-    {
-      id: 'app-copper',
-      type: 'photo',
-      title: 'High-Purity Electrolytic Copper Raw Material',
-      category: 'Infrastructure',
-      src: '/assets/copper.png'
     }
   ];
 
