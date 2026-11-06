@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   ArrowRight,
+  Download,
   Award,
   BadgeCheck,
   Boxes,
@@ -63,6 +64,10 @@ function CountUpNumber({ end, duration = 1800, suffix = '' }) {
 
   React.useEffect(() => {
     if (!started) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setCount(end);
+      return;
+    }
     let startTimestamp = null;
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
@@ -78,7 +83,9 @@ function CountUpNumber({ end, duration = 1800, suffix = '' }) {
     requestAnimationFrame(step);
   }, [started, end, duration]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  // The class keeps animated values from inheriting the smaller label styling
+  // used elsewhere in the stat card.
+  return <span className="ab-stat-count" ref={ref}>{count}{suffix}</span>;
 }
 
 function AboutIndustriesSlider() {
@@ -303,6 +310,17 @@ export default function AboutPage({ onNavigate }) {
   const [isPlayingIntroVideo, setIsPlayingIntroVideo] = React.useState(false);
   const [isPlayingMfgVideo, setIsPlayingMfgVideo] = React.useState(false);
   const [activeProductIndex, setActiveProductIndex] = React.useState(0);
+  const products = [
+    { title: 'House Wires', subtitle: 'Safe & Reliable', image: 'cable_trans_1.png' },
+    { title: 'Industrial Cables', subtitle: 'Built for Performance', image: 'cable_trans_2.png' },
+    { title: 'Control Cables', subtitle: 'Precision & Stability', image: 'cable_trans_3.png' },
+    { title: 'Power Cables', subtitle: 'Strength for Growth', image: 'cable_trans_4.png' },
+    { title: 'Specialty Cables', subtitle: 'For Advanced Needs', image: 'cable_trans_8.png' }
+  ];
+  const visibleProducts = [0, 1, 2].map((offset) => {
+    const index = (activeProductIndex + offset) % products.length;
+    return { ...products[index], index };
+  });
 
   // IntersectionObserver for scroll animations (runs ONCE per element)
   React.useEffect(() => {
@@ -360,10 +378,11 @@ export default function AboutPage({ onNavigate }) {
       {/* -------------------------------------------------------------------------- */}
       {/* 1. HERO SECTION                                                            */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="ab-hero-section">
+      <section className="ab-hero-section page-banner">
         <div className="about-container ab-hero-grid">
           <div className="ab-hero-copy">
-            <div className="ab-hero-kicker ab-reveal" style={{ transitionDelay: '0ms' }}>RELIABLE TODAY</div>
+            <div className="ab-hero-breadcrumb ab-reveal" style={{ transitionDelay: '0ms' }}>Home <span>/</span> About Us</div>
+            <div className="ab-hero-kicker ab-reveal" style={{ transitionDelay: '50ms' }}>ABOUT HITEX PLUS</div>
             <h1 className="ab-hero-h1 ab-reveal" style={{ transitionDelay: '100ms' }}>
               POWERING<br />
               A <span className="ab-text-green">SAFER</span> <span className="ab-text-cyan">TOMORROW</span>
@@ -429,14 +448,46 @@ export default function AboutPage({ onNavigate }) {
           <div className="ab-intro-grid">
             <div className="ab-intro-copy ab-reveal-left">
               <span className="ab-eyebrow">ABOUT US</span>
-              <h2 className="ab-title">Committed to Quality. <span>Driven by Innovation.</span></h2>
+              <h2 className="ab-title">Jay Cable Industries <span>(HITEX PLUS)</span></h2>
               <div className="ab-line"></div>
               <p className="ab-desc">
-                HITEX PLUS is a leading manufacturer of high-quality wires and cables, known for its commitment to safety, reliability and performance. With modern manufacturing facilities and a strong focus on quality control, we deliver products that meet national and international standards.
+                For over 25 years, Jay Cable Industries has manufactured and exported high-quality electrical cables from our state-of-the-art facility in Kathwada GIDC, Ahmedabad. Our mission has always been simple: deliver dependable products that perform consistently, every time.
               </p>
-              <button className="ab-btn-outline" onClick={() => { if (onNavigate) onNavigate('intro'); }}>
-                Learn More About Us <ArrowRight size={16} />
-              </button>
+              <p className="ab-desc" style={{ marginTop: '10px', marginBottom: '14px' }}>
+                Under our <strong>HITEX PLUS</strong> brand, we offer a comprehensive range of LT PVC and XLPE cables in copper and aluminium, including:
+              </p>
+              <ul className="ab-cables-checklist">
+                <li><span>✔</span> LT-PVC/XLPE Copper/Aluminum Armoured/Unarmoured</li>
+                <li><span>✔</span> Power/Control Cables</li>
+                <li><span>✔</span> Submersible Flat</li>
+                <li><span>✔</span> Multi core Flexibles</li>
+                <li><span>✔</span> House wires (0.5 to 95.0 sq. mm)</li>
+                <li><span>✔</span> Solar DC Cable</li>
+              </ul>
+              <p className="ab-desc" style={{ marginTop: '14px' }}>
+                Every product is manufactured to national and international standards and tested for safety, durability, and performance. Our modern machinery and skilled technical team ensure uniform quality across every batch.
+              </p>
+              <p className="ab-desc" style={{ marginTop: '10px', marginBottom: '22px' }}>
+                From small contractors to large industrial clients, businesses across India trust Jay Cable Industries for quality products, competitive pricing, and on-time delivery. We also undertake turnkey project supplies, with dedicated support from enquiry to delivery.
+              </p>
+              <div className="ab-intro-actions" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
+                <button
+                  className="ab-btn-teal"
+                  onClick={() => { if (onNavigate) onNavigate('products'); }}
+                >
+                  Explore Products <ArrowRight size={16} />
+                </button>
+                <a
+                  href="/HITEX PLUS CATALOG-NEW.pdf"
+                  download="HITEX_PLUS_Catalogue.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ab-btn-outline"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+                >
+                  <Download size={16} /> Download Catalogue
+                </a>
+              </div>
             </div>
 
             <div className="ab-intro-img-stage ab-reveal-right">
@@ -451,7 +502,7 @@ export default function AboutPage({ onNavigate }) {
                 />
               ) : (
                 <>
-                  <img src={`${A}image 14.jpeg`} alt="HITEX PLUS Manufacturing Plant" />
+                  <img src={`${A}image 14.jpeg`} alt="HITEX PLUS Manufacturing Plant" loading="lazy" />
                   <button className="ab-intro-tour-btn" onClick={() => setIsPlayingIntroVideo(true)}>
                     <Play size={18} fill="#005f75" /> Take a Virtual Tour
                   </button>
@@ -463,34 +514,34 @@ export default function AboutPage({ onNavigate }) {
             </div>
           </div>
 
-          {/* Stats Cards Row */}
+          {/* Stats Cards Row (Numbers Strip) */}
           <div className="ab-stats-grid ab-reveal-scale ab-stagger-container">
             <div className="ab-stat-card ab-stagger-item" style={{ '--stagger-index': 0 }}>
-              <div className="ab-stat-icon"><CalendarDays size={24} /></div>
+              <div className="ab-stat-icon"><Sparkles size={32} strokeWidth={1.8} /></div>
               <div className="ab-stat-info">
-                <strong><CountUpNumber end={20} suffix="+" /></strong>
-                <span>Years of Excellence</span>
+                <strong><CountUpNumber end={25} suffix="+" /></strong>
+                <span>Years of experience</span>
               </div>
             </div>
             <div className="ab-stat-card ab-stagger-item" style={{ '--stagger-index': 1 }}>
-              <div className="ab-stat-icon"><Users size={24} /></div>
+              <div className="ab-stat-icon"><Users size={32} strokeWidth={1.8} /></div>
               <div className="ab-stat-info">
-                <strong><CountUpNumber end={1000} suffix="+" /></strong>
-                <span>Happy Customers</span>
+                <strong><CountUpNumber end={5000} suffix="+" /></strong>
+                <span>Satisfied customers</span>
               </div>
             </div>
             <div className="ab-stat-card ab-stagger-item" style={{ '--stagger-index': 2 }}>
-              <div className="ab-stat-icon"><Boxes size={24} /></div>
+              <div className="ab-stat-icon"><Boxes size={32} strokeWidth={1.8} /></div>
               <div className="ab-stat-info">
-                <strong>Wide</strong>
-                <span>Product Range</span>
+                <strong><CountUpNumber end={150} suffix="+" /></strong>
+                <span>Product variants</span>
               </div>
             </div>
             <div className="ab-stat-card ab-stagger-item" style={{ '--stagger-index': 3 }}>
-              <div className="ab-stat-icon"><Globe size={24} /></div>
+              <div className="ab-stat-icon"><Globe2 size={32} strokeWidth={1.8} /></div>
               <div className="ab-stat-info">
-                <strong>Pan India</strong>
-                <span>Presence</span>
+                <strong><CountUpNumber end={12} suffix="+" /></strong>
+                <span>Countries exported to</span>
               </div>
             </div>
           </div>
@@ -501,7 +552,11 @@ export default function AboutPage({ onNavigate }) {
       {/* 3. VISION & MISSION SECTION                                                */}
       {/* -------------------------------------------------------------------------- */}
       <section className="ab-vm-section">
-        <div className="ab-vm-grid">
+        <div className="about-container ab-vm-heading ab-reveal">
+          <span className="ab-eyebrow">OUR PURPOSE</span>
+          <h2>Vision <span>&amp; Mission</span></h2>
+        </div>
+        <div className="about-container ab-vm-grid">
           {/* Left Column: OUR VISION */}
           <div className="ab-vision-col ab-reveal-left">
             <span className="ab-vm-eyebrow">OUR VISION</span>
@@ -512,24 +567,12 @@ export default function AboutPage({ onNavigate }) {
             <p className="ab-vm-p">
               To deliver innovative, reliable and sustainable cable solutions that empower progress and create a safer, smarter and more connected world.
             </p>
-            <button className="ab-vm-pill-btn" onClick={() => alert('Our Vision Statement')}>
-              Our Vision <ArrowRight size={16} />
-            </button>
-          </div>
-
-          {/* Center Column: Earth Text Overlay with Pulse Glow */}
-          <div className="ab-globe-center ab-reveal">
-            <div className="ab-globe-glow-aura" />
-            <div className="ab-center-earth-text">
-              <span className="ab-cet-light">CONNECTING</span>
-              <span className="ab-cet-bold">A BRIGHTER</span>
-              <span className="ab-cet-bold">TOMORROW</span>
-            </div>
           </div>
 
           {/* Right Column: OUR MISSION */}
           <div className="ab-mission-col ab-reveal-right">
             <span className="ab-vm-eyebrow">OUR MISSION</span>
+            <h3>Engineering trust into every connection.</h3>
             <div className="ab-mission-grid ab-stagger-container">
               <div className="ab-mission-col-item ab-stagger-item" style={{ '--stagger-index': 0 }}>
                 <div className="ab-mission-icon-circle">
@@ -597,75 +640,22 @@ export default function AboutPage({ onNavigate }) {
                 </button>
 
                 <div className="ab-carousel-cards-grid ab-stagger-container">
-                  <div
-                    className={`ab-product-card ab-stagger-item ${activeProductIndex === 0 ? 'active-card' : ''}`}
-                    style={{ '--stagger-index': 0 }}
-                    onClick={() => setActiveProductIndex(0)}
-                  >
-                    <div className="ab-product-img-box">
-                      <img src={`${A}cable_trans_1.png`} alt="House Wires" />
-                    </div>
-                    <div className="ab-product-card-body">
-                      <h4>House Wires</h4>
-                      <small>Safe &amp; Reliable</small>
-                    </div>
-                  </div>
-
-                  <div
-                    className={`ab-product-card ab-stagger-item ${activeProductIndex === 1 ? 'active-card' : ''}`}
-                    style={{ '--stagger-index': 1 }}
-                    onClick={() => setActiveProductIndex(1)}
-                  >
-                    <div className="ab-product-img-box">
-                      <img src={`${A}cable_trans_2.png`} alt="Industrial Cables" />
-                    </div>
-                    <div className="ab-product-card-body">
-                      <h4>Industrial Cables</h4>
-                      <small>Built for Performance</small>
-                    </div>
-                  </div>
-
-                  <div
-                    className={`ab-product-card ab-stagger-item ${activeProductIndex === 2 ? 'active-card' : ''}`}
-                    style={{ '--stagger-index': 2 }}
-                    onClick={() => setActiveProductIndex(2)}
-                  >
-                    <div className="ab-product-img-box">
-                      <img src={`${A}cable_trans_3.png`} alt="Control Cables" />
-                    </div>
-                    <div className="ab-product-card-body">
-                      <h4>Control Cables</h4>
-                      <small>Precision &amp; Stability</small>
-                    </div>
-                  </div>
-
-                  <div
-                    className={`ab-product-card ab-stagger-item ${activeProductIndex === 3 ? 'active-card' : ''}`}
-                    style={{ '--stagger-index': 3 }}
-                    onClick={() => setActiveProductIndex(3)}
-                  >
-                    <div className="ab-product-img-box">
-                      <img src={`${A}cable_trans_4.png`} alt="Power Cables" />
-                    </div>
-                    <div className="ab-product-card-body">
-                      <h4>Power Cables</h4>
-                      <small>Strength for Growth</small>
-                    </div>
-                  </div>
-
-                  <div
-                    className={`ab-product-card ab-stagger-item ${activeProductIndex === 4 ? 'active-card' : ''}`}
-                    style={{ '--stagger-index': 4 }}
-                    onClick={() => setActiveProductIndex(4)}
-                  >
-                    <div className="ab-product-img-box">
-                      <img src={`${A}cable_trans_8.png`} alt="Specialty Cables" />
-                    </div>
-                    <div className="ab-product-card-body">
-                      <h4>Specialty Cables</h4>
-                      <small>For Advanced Needs</small>
-                    </div>
-                  </div>
+                  {visibleProducts.map((product, displayIndex) => (
+                    <article
+                      key={product.title}
+                      className="ab-product-card ab-stagger-item"
+                      style={{ '--stagger-index': displayIndex }}
+                      onClick={() => setActiveProductIndex(product.index)}
+                    >
+                      <div className="ab-product-img-box">
+                        <img src={`${A}${product.image}`} alt={product.title} loading="lazy" />
+                      </div>
+                      <div className="ab-product-card-body">
+                        <h4>{product.title}</h4>
+                        <small>{product.subtitle}</small>
+                      </div>
+                    </article>
+                  ))}
                 </div>
 
                 <button
@@ -704,49 +694,50 @@ export default function AboutPage({ onNavigate }) {
                 <span className="ab-why-eyebrow">WHY CHOOSE HITEX PLUS</span>
                 <h2 className="ab-why-h2">The Strength Behind Every Connection</h2>
                 <div className="ab-why-green-line"></div>
+                <p className="ab-why-intro">Six commitments that turn every metre of cable into dependable performance.</p>
               </div>
 
               <div className="ab-why-cards-row ab-stagger-container">
-                <div className="ab-why-card active ab-stagger-item" style={{ '--stagger-index': 0 }}>
+                <div className="ab-why-card ab-stagger-item" style={{ '--stagger-index': 0 }}>
                   <div className="ab-why-card-icon">
                     <Boxes size={28} strokeWidth={1.8} />
                   </div>
-                  <span>Premium<br />Raw Materials</span>
+                  <div className="ab-why-card-copy"><h3>Premium Raw Materials</h3><p>Quality inputs for safer, longer-lasting cables.</p></div>
                 </div>
 
-                <div className="ab-why-card active ab-stagger-item" style={{ '--stagger-index': 1 }}>
+                <div className="ab-why-card ab-stagger-item" style={{ '--stagger-index': 1 }}>
                   <div className="ab-why-card-icon">
                     <Factory size={28} strokeWidth={1.8} />
                   </div>
-                  <span>Advanced<br />Manufacturing</span>
+                  <div className="ab-why-card-copy"><h3>Advanced Manufacturing</h3><p>Modern processes built for precise, consistent output.</p></div>
                 </div>
 
                 <div className="ab-why-card ab-stagger-item" style={{ '--stagger-index': 2 }}>
                   <div className="ab-why-card-icon">
                     <ShieldCheck size={28} strokeWidth={1.8} />
                   </div>
-                  <span>Strict Quality<br />Control</span>
+                  <div className="ab-why-card-copy"><h3>Strict Quality Control</h3><p>Every batch is checked before it reaches you.</p></div>
                 </div>
 
                 <div className="ab-why-card ab-stagger-item" style={{ '--stagger-index': 3 }}>
                   <div className="ab-why-card-icon">
                     <BadgeCheck size={28} strokeWidth={1.8} />
                   </div>
-                  <span>Certified<br />Standards</span>
+                  <div className="ab-why-card-copy"><h3>Certified Standards</h3><p>Made to meet trusted safety and quality benchmarks.</p></div>
                 </div>
 
                 <div className="ab-why-card ab-stagger-item" style={{ '--stagger-index': 4 }}>
                   <div className="ab-why-card-icon">
                     <Clock size={28} strokeWidth={1.8} />
                   </div>
-                  <span>On-Time<br />Delivery</span>
+                  <div className="ab-why-card-copy"><h3>On-Time Delivery</h3><p>Reliable supply when your project needs it.</p></div>
                 </div>
 
                 <div className="ab-why-card ab-stagger-item" style={{ '--stagger-index': 5 }}>
                   <div className="ab-why-card-icon">
                     <Globe size={28} strokeWidth={1.8} />
                   </div>
-                  <span>Trusted<br />Nationwide</span>
+                  <div className="ab-why-card-copy"><h3>Trusted Nationwide</h3><p>Chosen by customers across India every day.</p></div>
                 </div>
               </div>
             </div>
@@ -866,13 +857,6 @@ export default function AboutPage({ onNavigate }) {
               </div>
             </div>
 
-            {/* Right Area: Slogan */}
-            <div className="ab-eco-right-quote ab-reveal-right">
-              <span className="ab-quote-light ab-stagger-item" style={{ '--stagger-index': 0 }}>Cleaner</span>
-              <span className="ab-quote-bold ab-stagger-item" style={{ '--stagger-index': 1 }}>Greener</span>
-              <span className="ab-quote-bold ab-stagger-item" style={{ '--stagger-index': 2 }}>Stronger</span>
-              <span className="ab-quote-bold ab-stagger-item" style={{ '--stagger-index': 3 }}>Together</span>
-            </div>
           </div>
         </div>
       </section>
@@ -882,6 +866,13 @@ export default function AboutPage({ onNavigate }) {
       {/* -------------------------------------------------------------------------- */}
       <section className="ab-cert-section">
         <div className="ab-cert-container">
+          <div className="ab-cert-strip-heading" style={{ textAlign: 'center', marginBottom: '24px' }}>
+            <span style={{ color: '#008fa8', fontWeight: 800, fontSize: '13px', letterSpacing: '1.5px', textTransform: 'uppercase' }}>CERTIFICATIONS STRIP</span>
+            <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#0f172a', margin: '4px 0 6px 0' }}>Certified. Tested. Trusted.</h3>
+            <p style={{ color: '#64748b', fontSize: '14px', margin: 0, fontWeight: 500 }}>
+              [ISI / BIS] &bull; [ISO 9001:2015] &bull; [Govt. Approved &amp; CE Certified] &bull; [Test reports available on request]
+            </p>
+          </div>
           <div className="ab-cert-bar-grid ab-stagger-container">
             {[
               ['/icons/GEM.png', 'Government eMarketplace'],
@@ -913,20 +904,21 @@ export default function AboutPage({ onNavigate }) {
       <section className="ab-bottom-cta">
         <div className="ab-bottom-cta-inner ab-reveal">
           <div className="ab-bottom-cta-text ab-reveal-left">
-            <h2>LET'S BUILD A SAFER TOMORROW</h2>
-            <p>Partner with HITEX PLUS for reliable, high quality wires &amp; cables that keep the world connected.</p>
+            <span className="ab-cta-eyebrow">CLOSING CALL TO ACTION</span>
+            <h2>Looking for a reliable cable manufacturer?</h2>
+            <p>From small contractors to large industrial clients, businesses across India trust Jay Cable Industries (HITEX PLUS) for quality products, competitive pricing, and on-time delivery.</p>
           </div>
           <div className="ab-bottom-cta-btns ab-reveal-right">
             <button
               className="ab-btn-teal ab-magnetic-btn ab-cta-enquire-btn"
               style={{ background: '#16a34a' }}
-              onClick={() => alert('Enquiry form modal')}
+              onClick={() => { if (onNavigate) onNavigate('contact'); }}
             >
-              Enquire Now <ArrowRight size={16} />
+              Request a Quote <ArrowRight size={16} />
             </button>
             <button
               className="ab-btn-outline ab-magnetic-btn ab-cta-contact-btn"
-              style={{ color: '#ffffff', borderColor: '#ffffff' }}
+              style={{ color: '#ffffff', borderColor: '#ffffff', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
               onClick={() => { if (onNavigate) onNavigate('contact'); }}
             >
               Contact Us <ArrowRight size={16} />

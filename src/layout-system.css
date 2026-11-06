@@ -1,0 +1,1973 @@
+/* ==========================================================================
+
+   HITEX PLUS — shared shell, unified banners, unique page layouts
+
+   Theme tokens stay teal / dark / red. Contact copy is unchanged.
+
+   ========================================================================== */
+
+
+
+:root {
+
+  --page-max: 1240px;
+
+  --page-gutter: 48px;
+
+  --page-gutter-sm: 20px;
+
+  --banner-min: 440px;
+
+  --banner-pad-y: 90px;
+
+  --section-y: 88px;
+
+}
+
+
+
+.container,
+
+.about-container,
+
+.pp-container,
+
+.tech-container,
+
+.infra-container,
+
+.cert-container,
+
+.app-container,
+
+.gal-container,
+
+.cnt-container,
+
+.pdp-container,
+
+.why-container,
+
+.testing-container,
+
+.gallery-container,
+
+.industries-container,
+
+.ab-products-container,
+
+.ab-why-container,
+
+.ab-industries-container,
+
+.ab-eco-container,
+
+.ab-cert-container {
+
+  width: min(var(--page-max), calc(100% - (var(--page-gutter) * 2))) !important;
+
+  margin-left: auto !important;
+
+  margin-right: auto !important;
+
+}
+
+
+
+.feature-strip,
+
+.cert-strip.container,
+
+.products-section.container,
+
+.about.container {
+
+  width: min(var(--page-max), calc(100% - (var(--page-gutter) * 2))) !important;
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   Unified inner-page banner
+
+   -------------------------------------------------------------------------- */
+
+.page-banner,
+
+.ab-hero-section,
+
+.pp-hero-section,
+
+.tech-hero-section,
+
+.infra-hero-section,
+
+.cert-hero-section,
+
+.app-hero-section,
+
+.gal-hero-section,
+
+.cnt-hero-section,
+
+.pdp-page-banner {
+
+  position: relative !important;
+
+  min-height: var(--banner-min) !important;
+
+  padding: var(--banner-pad-y) 0 82px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+
+  overflow: hidden !important;
+
+}
+
+
+
+.page-banner::after,
+
+.ab-hero-section::after,
+
+.pp-hero-section::after,
+
+.tech-hero-section::after,
+
+.infra-hero-section::after,
+
+.cert-hero-section::after,
+
+.app-hero-section::after,
+
+.gal-hero-section::after,
+
+.cnt-hero-section::after,
+
+.pdp-page-banner::after {
+
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  height: 3px;
+
+  background: linear-gradient(90deg, var(--teal) 0%, #00b4d8 42%, var(--red) 100%);
+
+  z-index: 4;
+
+  pointer-events: none;
+
+}
+
+
+
+.page-banner-inner {
+
+  position: relative;
+
+  z-index: 3;
+
+  width: min(var(--page-max), calc(100% - (var(--page-gutter) * 2)));
+
+  margin: 0 auto;
+
+}
+
+
+
+.pdp-page-banner {
+
+  background:
+
+    linear-gradient(90deg, rgba(3, 24, 38, 0.94) 0%, rgba(3, 24, 38, 0.72) 48%, rgba(3, 24, 38, 0.28) 100%),
+
+    url('/assets/products banner s.png') 68% center / cover no-repeat;
+
+  color: #ffffff;
+
+  margin-bottom: 0;
+
+}
+
+
+
+.pdp-page-banner .pdp-breadcrumb {
+
+  color: #cbd5e1;
+
+  margin-bottom: 18px;
+
+}
+
+
+
+.pdp-page-banner .pdp-breadcrumb a,
+
+.pdp-page-banner .pdp-breadcrumb-sep {
+
+  color: #94a3b8;
+
+}
+
+
+
+.pdp-page-banner .pdp-breadcrumb a:hover,
+
+.pdp-page-banner .pdp-breadcrumb-active {
+
+  color: #7dd3e8;
+
+}
+
+
+
+.pdp-banner-title {
+
+  font-family: 'Outfit', sans-serif;
+
+  font-weight: 800;
+
+  font-size: clamp(36px, 4.4vw, 56px);
+
+  line-height: 1.08;
+
+  color: #ffffff;
+
+  margin: 0 0 12px;
+
+}
+
+
+
+.pdp-banner-title em {
+
+  font-style: normal;
+
+  color: #7dd3e8;
+
+}
+
+
+
+.pdp-banner-desc {
+
+  max-width: 560px;
+
+  color: #dbe7ee;
+
+  font-size: 16px;
+
+  margin: 0;
+
+}
+
+
+
+.pdp-page-root {
+
+  padding-top: 0 !important;
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   Home hero energy
+
+   -------------------------------------------------------------------------- */
+
+.hero {
+
+  isolation: isolate;
+
+}
+
+
+
+.hero-energy {
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  overflow: hidden;
+
+  z-index: 1;
+
+}
+
+
+
+.hero-orb {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(2px);
+
+  animation: orbFloat 8s ease-in-out infinite;
+
+}
+
+
+
+.hero-orb-1 {
+
+  width: 180px;
+
+  height: 180px;
+
+  left: 8%;
+
+  top: 18%;
+
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.28), transparent 70%);
+
+}
+
+
+
+.hero-orb-2 {
+
+  width: 240px;
+
+  height: 240px;
+
+  right: 12%;
+
+  bottom: 8%;
+
+  background: radial-gradient(circle, rgba(237, 28, 36, 0.16), transparent 70%);
+
+  animation-delay: -3s;
+
+}
+
+
+
+.hero-cable-line {
+
+  position: absolute;
+
+  left: -10%;
+
+  bottom: 22%;
+
+  width: 70%;
+
+  height: 2px;
+
+  background: linear-gradient(90deg, transparent, rgba(0, 143, 168, 0.7), transparent);
+
+  animation: cableSweep 5.5s ease-in-out infinite;
+
+}
+
+
+
+.hero-copy {
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
+
+
+@keyframes orbFloat {
+
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+
+  50% { transform: translate3d(18px, -22px, 0) scale(1.08); }
+
+}
+
+
+
+@keyframes cableSweep {
+
+  0% { transform: translateX(-8%); opacity: 0.35; }
+
+  50% { transform: translateX(18%); opacity: 1; }
+
+  100% { transform: translateX(42%); opacity: 0.2; }
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   Home: certification marquee
+
+   -------------------------------------------------------------------------- */
+
+.cert-strip {
+
+  overflow: hidden;
+
+  margin-top: clamp(-36px, -2.4vw, -16px) !important;
+
+}
+
+
+
+.cert-marquee {
+
+  overflow: hidden;
+
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+
+}
+
+
+
+.cert-marquee-track {
+
+  display: flex;
+
+  width: max-content;
+
+  gap: 0;
+
+  animation: marqueeLeft 28s linear infinite;
+
+}
+
+
+
+.cert-strip:hover .cert-marquee-track {
+
+  animation-play-state: paused;
+
+}
+
+
+
+.cert-marquee-track .cert-item {
+
+  min-width: 200px;
+
+  border-right: 1px solid #e2e8f0;
+
+}
+
+
+
+@keyframes marqueeLeft {
+
+  from { transform: translateX(0); }
+
+  to { transform: translateX(-50%); }
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   Home: magazine welcome + overlapping photos
+
+   -------------------------------------------------------------------------- */
+
+.about.container {
+
+  gap: 72px !important;
+
+  padding: var(--section-y) 0 !important;
+
+}
+
+
+
+/* Home About: Clean & sharp factory image presentation without stray outline borders */
+.about-pics::before,
+.about-pics::after,
+.about-pics-frame {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.about-pics {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 580px !important;
+  margin: 0 auto !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  box-shadow: 0 16px 36px rgba(0, 45, 65, 0.1), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid #dce8ea !important;
+}
+
+.about-pics img,
+.about-pics .about-pic-factory {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1280 / 958 !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 20px !important;
+  box-shadow: none !important;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.about-pics:hover img,
+.about-pics:hover .about-pic-factory {
+  transform: scale(1.02) !important;
+}
+
+@media (max-width: 992px) {
+  .about-pics {
+    max-width: 100% !important;
+  }
+  .about-pics img,
+  .about-pics .about-pic-factory {
+    height: auto !important;
+    aspect-ratio: 1280 / 958 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-pics {
+    border-radius: 16px !important;
+  }
+  .about-pics img,
+  .about-pics .about-pic-factory {
+    height: auto !important;
+    aspect-ratio: 1280 / 958 !important;
+    border-radius: 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-pics {
+    border-radius: 14px !important;
+  }
+  .about-pics img,
+  .about-pics .about-pic-factory {
+    height: auto !important;
+    aspect-ratio: 1280 / 958 !important;
+    border-radius: 14px !important;
+  }
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   Home: capability ribbon
+
+   -------------------------------------------------------------------------- */
+
+.feature-grid {
+
+  background: linear-gradient(180deg, #ffffff 0%, #f4fbfc 100%) !important;
+
+}
+
+
+
+.feature-card {
+
+  border-right: none !important;
+
+  position: relative;
+
+}
+
+
+
+.feature-card::after {
+
+  content: '';
+
+  position: absolute;
+
+  right: 0;
+
+  top: 18%;
+
+  height: 64%;
+
+  width: 1px;
+
+  background: linear-gradient(180deg, transparent, #c5dde4, transparent);
+
+}
+
+
+
+.feature-card:last-child::after {
+
+  display: none;
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   Home: product mosaic
+
+   -------------------------------------------------------------------------- */
+
+.products-section {
+
+  padding: var(--section-y) 0 !important;
+
+}
+
+
+
+.products-section .product-cards-grid {
+
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+
+  gap: 22px !important;
+
+}
+
+
+
+.products-section .hd-product-card:nth-child(1),
+
+.products-section .hd-product-card:nth-child(2) {
+
+  grid-column: span 2;
+
+}
+
+
+
+.products-section .hd-product-card {
+
+  border-radius: 24px !important;
+
+}
+
+
+
+.products-section .hd-product-card:nth-child(odd) {
+
+  background: linear-gradient(180deg, #ffffff 0%, #f7fcfd 100%);
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   Home: why-choose split with cable rail
+
+   -------------------------------------------------------------------------- */
+
+.why-content {
+
+  position: relative;
+
+  padding-left: 22px;
+
+}
+
+
+
+.why-content::before {
+
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+
+  top: 8px;
+
+  bottom: 8px;
+
+  width: 3px;
+
+  border-radius: 99px;
+
+  background: linear-gradient(180deg, var(--teal), #10b981);
+
+}
+
+
+
+.why-card {
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   Home: testing as numbered process
+
+   -------------------------------------------------------------------------- */
+
+.testing-section {
+
+  background:
+
+    linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+
+}
+
+
+
+.testing-cards-grid {
+
+  counter-reset: test-step;
+
+}
+
+
+
+.testing-card-item {
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+
+.testing-card-item::before {
+
+  counter-increment: test-step;
+
+  content: counter(test-step, decimal-leading-zero);
+
+  position: absolute;
+
+  top: 10px;
+
+  left: 14px;
+
+  z-index: 2;
+
+  font-family: 'Outfit', sans-serif;
+
+  font-weight: 800;
+
+  font-size: 13px;
+
+  letter-spacing: 1px;
+
+  color: #ffffff;
+
+  background: var(--teal);
+
+  border-radius: 999px;
+
+  padding: 4px 10px;
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   CTA pulse
+
+   -------------------------------------------------------------------------- */
+
+.cta-quote-btn {
+
+  position: relative;
+
+}
+
+
+
+.cta-quote-btn::after {
+
+  content: '';
+
+  position: absolute;
+
+  inset: -6px;
+
+  border-radius: inherit;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  animation: ctaPulse 2.4s ease-out infinite;
+
+  pointer-events: none;
+
+}
+
+
+
+@keyframes ctaPulse {
+
+  0% { opacity: 0.7; transform: scale(0.96); }
+
+  100% { opacity: 0; transform: scale(1.12); }
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   ABOUT — editorial split + offset stats
+
+   -------------------------------------------------------------------------- */
+
+.about-page-root .ab-intro-grid {
+
+  grid-template-columns: 0.92fr 1.08fr !important;
+
+}
+
+
+
+.about-page-root .ab-intro-section {
+
+  padding-top: var(--section-y) !important;
+
+  padding-bottom: var(--section-y) !important;
+
+}
+
+
+
+.about-page-root .ab-vm-grid {
+
+  width: min(var(--page-max), calc(100% - (var(--page-gutter) * 2))) !important;
+
+  padding: 0 !important;
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   PRODUCTS — sticky filter + catalog cards
+
+   -------------------------------------------------------------------------- */
+
+.product-page-root .pp-catalog-section {
+
+  padding-top: var(--section-y) !important;
+
+  padding-bottom: var(--section-y) !important;
+
+  grid-template-columns: 280px minmax(0, 1fr) !important;
+
+}
+
+
+
+.product-page-root .pp-sidebar {
+
+  position: sticky;
+
+  top: 120px;
+
+  background: linear-gradient(180deg, #f4fbfd 0%, #ffffff 100%) !important;
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   TECHNOLOGY — staggered reverse rows
+
+   -------------------------------------------------------------------------- */
+
+.technology-page-root .tech-section {
+
+  padding: var(--section-y) 0 !important;
+
+}
+
+
+
+.technology-page-root .tech-section:nth-of-type(odd) .tech-grid-2 {
+
+  direction: rtl;
+
+}
+
+
+
+.technology-page-root .tech-section:nth-of-type(odd) .tech-grid-2 > * {
+
+  direction: ltr;
+
+}
+
+
+
+.technology-page-root .tech-img-stage {
+
+  clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
+
+}
+
+
+
+.technology-page-root .tech-section:nth-of-type(odd) .tech-img-stage {
+
+  clip-path: polygon(0 0, 94% 0, 100% 100%, 6% 100%);
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   APPLICATIONS — mosaic
+
+   -------------------------------------------------------------------------- */
+
+.app-page-root .app-grid-section {
+
+  padding: var(--section-y) 0 !important;
+
+}
+
+
+
+.app-page-root .app-cards-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 28px !important;
+}
+
+.app-page-root .app-card {
+  grid-column: span 1 !important;
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   CERTIFICATIONS — stamp wall
+
+   -------------------------------------------------------------------------- */
+
+.cert-page-root .cert-section {
+
+  padding: var(--section-y) 0 !important;
+
+}
+
+
+
+.cert-page-root .cert-cards-grid {
+
+  display: grid !important;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+  gap: 22px !important;
+
+}
+
+
+
+/* Removed staggered margin-top for clean certificate cards */
+
+
+
+/* --------------------------------------------------------------------------
+
+   INFRASTRUCTURE — factory split
+
+   -------------------------------------------------------------------------- */
+
+.infra-page-root .infra-section {
+
+  padding: var(--section-y) 0 !important;
+
+}
+
+
+
+.infra-page-root .infra-grid-2 {
+
+  align-items: stretch !important;
+
+}
+
+
+
+.infra-page-root .infra-gallery-section .infra-container {
+
+  display: block;
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   GALLERY — masonry
+
+   -------------------------------------------------------------------------- */
+
+.gal-page-root .gal-grid-section {
+
+  padding: 28px 0 var(--section-y) !important;
+
+}
+
+
+
+.gal-page-root .gal-photos-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  grid-auto-rows: auto !important;
+  gap: 22px !important;
+}
+
+.gal-page-root .gal-photo-card {
+  height: auto !important;
+  grid-row: auto !important;
+  grid-column: auto !important;
+  aspect-ratio: 16 / 11 !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  border: 1px solid #dce8ea !important;
+  background: #02101b !important;
+  box-shadow: 0 4px 16px rgba(0, 40, 60, 0.08) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.gal-page-root .gal-photo-card:nth-child(3n) {
+  grid-row: auto !important;
+  grid-column: auto !important;
+}
+
+.gal-page-root .gal-photo-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 12px 28px rgba(0, 143, 168, 0.2) !important;
+}
+
+.gal-page-root .gal-photo-card--product {
+  grid-row: auto !important;
+  grid-column: auto !important;
+  background: #ffffff !important;
+  border: 1px solid #dce8ea !important;
+}
+
+.gal-page-root .gal-photo-card--product img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  padding: 18px !important;
+  background: #ffffff !important;
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   CONTACT — keep data, unique card rhythm
+
+   -------------------------------------------------------------------------- */
+
+.cnt-page-root .cnt-cards-section,
+
+.cnt-page-root .cnt-main-section {
+
+  padding-top: 48px;
+
+  padding-bottom: 48px;
+
+}
+
+
+
+.cnt-page-root .cnt-cards-row {
+
+  display: grid !important;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+
+}
+
+
+
+.cnt-page-root .cnt-info-card:nth-child(2),
+
+.cnt-page-root .cnt-info-card:nth-child(4) {
+
+  margin-top: 18px;
+
+}
+
+
+
+.cnt-page-root .cnt-main-grid {
+
+  gap: 36px;
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   PRODUCT DETAILS — two-pane shop layout
+
+   -------------------------------------------------------------------------- */
+
+.pdp-page-root .pdp-container {
+
+  padding-top: 36px;
+
+  padding-bottom: var(--section-y);
+
+}
+
+
+
+.pdp-page-root .pdp-hero-grid {
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+}
+
+
+
+.pdp-page-root .pdp-value-bar,
+
+.pdp-page-root .pdp-tabs-section,
+
+.pdp-page-root .pdp-bottom-grid {
+
+  margin-top: 36px;
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   Shared section breathing
+
+   -------------------------------------------------------------------------- */
+
+.ab-products-section,
+
+.ab-why-section,
+
+.ab-mfg-section,
+
+.ab-eco-section,
+
+.ab-cert-section,
+
+.pp-why-section,
+
+.app-cta-section,
+
+.gal-cta-section,
+
+.infra-bottom-cta,
+
+.cert-bottom-cta,
+
+.tech-bottom-cta,
+
+.pp-cta-section {
+
+  scroll-margin-top: 120px;
+
+}
+
+
+
+/* --------------------------------------------------------------------------
+
+   Motion
+
+   -------------------------------------------------------------------------- */
+
+@keyframes riseIn {
+
+  from { opacity: 0; transform: translateY(28px); }
+
+  to { opacity: 1; transform: none; }
+
+}
+
+
+
+.page-banner .ab-hero-copy,
+
+.page-banner .pp-hero-copy,
+
+.page-banner .tech-hero-copy,
+
+.page-banner .infra-hero-copy,
+
+.page-banner .cert-hero-copy,
+
+.page-banner .app-hero-content,
+
+.page-banner .gal-hero-content,
+
+.page-banner .cnt-hero-content,
+
+.pdp-page-banner .page-banner-inner {
+
+  animation: riseIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+}
+
+
+
+@media (max-width: 1100px) {
+
+  :root {
+
+    --page-gutter: 28px;
+
+    --banner-min: 380px;
+
+    --banner-pad-y: 72px;
+
+    --section-y: 64px;
+
+  }
+
+
+
+  .products-section .product-cards-grid,
+
+  .app-page-root .app-cards-grid,
+
+  .gal-page-root .gal-photos-grid,
+
+  .cert-page-root .cert-cards-grid {
+
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+
+  }
+
+
+
+  .products-section .hd-product-card:nth-child(1),
+
+  .products-section .hd-product-card:nth-child(2),
+
+  .app-page-root .app-card {
+    grid-column: span 1;
+  }
+
+
+
+  .product-page-root .pp-catalog-section,
+
+  .about-page-root .ab-intro-grid,
+
+  .technology-page-root .tech-section:nth-of-type(odd) .tech-grid-2 {
+
+    grid-template-columns: 1fr !important;
+
+    direction: ltr;
+
+  }
+
+
+
+  .cnt-page-root .cnt-cards-row {
+
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+
+  }
+
+
+
+  .cnt-page-root .cnt-info-card:nth-child(2),
+
+  .cnt-page-root .cnt-info-card:nth-child(4),
+
+  .cert-page-root .cert-cards-grid > *:nth-child(even) {
+
+    margin-top: 0;
+
+  }
+
+
+
+
+
+}
+
+
+
+@media (max-width: 720px) {
+
+  :root {
+
+    --page-gutter: 16px;
+
+    --banner-min: auto;
+
+    --banner-pad-y: 64px;
+
+    --section-y: 52px;
+
+  }
+
+
+
+  .products-section .product-cards-grid,
+
+  .app-page-root .app-cards-grid,
+
+  .gal-page-root .gal-photos-grid,
+
+  .cert-page-root .cert-cards-grid,
+
+  .cnt-page-root .cnt-cards-row {
+
+    grid-template-columns: 1fr !important;
+
+  }
+
+
+
+  .gal-page-root .gal-photos-grid {
+    grid-auto-rows: auto !important;
+    gap: 16px !important;
+  }
+
+  .gal-page-root .gal-photo-card,
+  .gal-page-root .gal-photo-card:nth-child(3n) {
+    grid-row: auto !important;
+    aspect-ratio: 16 / 11 !important;
+  }
+
+
+
+  .technology-page-root .tech-img-stage,
+
+  .technology-page-root .tech-section:nth-of-type(odd) .tech-img-stage {
+
+    clip-path: none;
+
+  }
+
+
+
+  .hero-orb,
+
+  .hero-cable-line,
+
+  .cta-quote-btn::after {
+
+    display: none;
+
+  }
+
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cert-marquee-track,
+
+  .hero-orb,
+
+  .hero-cable-line,
+
+  .cta-quote-btn::after,
+
+  .page-banner .ab-hero-copy,
+
+  .page-banner .pp-hero-copy,
+
+  .page-banner .tech-hero-copy,
+
+  .page-banner .infra-hero-copy,
+
+  .page-banner .cert-hero-copy,
+
+  .page-banner .app-hero-content,
+
+  .page-banner .gal-hero-content,
+
+  .page-banner .cnt-hero-content,
+
+  .pdp-page-banner .page-banner-inner {
+
+    animation: none !important;
+
+  }
+
+}
+
+
+/* ==========================================================================
+   MOBILE VIEWPORT & COMPREHENSIVE RESPONSIVE HEADER FIX
+   ========================================================================== */
+
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box;
+}
+
+#root, .app-root {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.mobile-nav-arrow {
+  display: none;
+}
+
+.mobile-nav-actions {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  /* Prevent any element from causing horizontal viewport expansion */
+  body {
+    position: relative;
+    overflow-x: hidden !important;
+  }
+
+  .header {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow: visible !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+    background: #ffffff !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  .header-top {
+    height: 64px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 16px !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+  }
+
+  .header-logo-box {
+    display: flex !important;
+    align-items: center !important;
+    flex: 0 1 auto !important;
+    max-width: calc(100% - 56px) !important;
+  }
+
+  .header-brand-logo,
+  .brand-logo {
+    max-height: 38px !important;
+    max-width: 155px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+  }
+
+  /* Hide header action buttons from top bar on mobile to eliminate overflow */
+  .header-actions {
+    display: none !important;
+  }
+
+  /* Prominent, accessible hamburger menu button */
+  .menu {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-left: auto !important;
+    background: #f0f7fe !important;
+    border: 1.5px solid #d0e7ff !important;
+    border-radius: 8px !important;
+    color: #005f75 !important;
+    cursor: pointer !important;
+    flex-shrink: 0 !important;
+    z-index: 10001 !important;
+    transition: background 0.2s ease, border-color 0.2s ease !important;
+  }
+
+  .menu:hover,
+  .menu:active {
+    background: #e0f2fe !important;
+    border-color: #008fa8 !important;
+  }
+
+  /* Collapse desktop second bar on mobile */
+  .nav {
+    height: 0 !important;
+    min-height: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  .nav nav {
+    display: none !important;
+  }
+
+  /* Full-width interactive mobile drawer */
+  .nav nav.show {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 64px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: calc(100vh - 64px) !important;
+    background: #ffffff !important;
+    z-index: 10000 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 16px 20px 48px !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .nav nav a {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    padding: 13px 14px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    margin: 0 0 3px 0 !important;
+    background: transparent !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .nav nav a::after {
+    display: none !important;
+  }
+
+  .mobile-nav-arrow {
+    display: inline-block !important;
+    color: #94a3b8 !important;
+    transition: transform 0.2s ease, color 0.2s ease !important;
+  }
+
+  .nav nav a:hover {
+    background: #f8fafc !important;
+    color: #005f75 !important;
+  }
+
+  .nav nav a:hover .mobile-nav-arrow {
+    color: #005f75 !important;
+    transform: translateX(3px) !important;
+  }
+
+  .nav nav a.active {
+    background: #f0fdf4 !important;
+    color: #005f75 !important;
+    font-weight: 800 !important;
+    border-left: 4px solid #008fa8 !important;
+  }
+
+  .nav nav a.active .mobile-nav-arrow {
+    color: #008fa8 !important;
+  }
+
+  /* Mobile CTA actions inside drawer */
+  .mobile-nav-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    margin-top: 20px !important;
+    padding-top: 18px !important;
+    border-top: 2px dashed #e2e8f0 !important;
+  }
+
+  .mobile-nav-btn {
+    height: 48px !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 13.5px !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    box-sizing: border-box !important;
+  }
+
+  .mobile-nav-btn.red {
+    background: #005f75 !important;
+    color: #ffffff !important;
+    border: 1px solid #005f75 !important;
+    box-shadow: 0 4px 12px rgba(0, 95, 117, 0.2) !important;
+  }
+
+  .mobile-nav-btn.outline {
+    background: #ffffff !important;
+    color: #005f75 !important;
+    border: 1.5px solid #005f75 !important;
+  }
+
+  /* Hero & Container responsive containment */
+  .hero {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 24px 0 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero-copy {
+    width: calc(100% - 32px) !important;
+    max-width: 100% !important;
+    margin: 0 16px !important;
+    padding: 24px 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero .actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin-top: 20px !important;
+  }
+
+  .hero .actions .btn,
+  .hero .actions button,
+  .hero .actions a {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .container,
+  .about-container,
+  .pp-container,
+  .tech-container,
+  .infra-container,
+  .cert-container,
+  .app-container,
+  .gal-container,
+  .cnt-container,
+  .pdp-container {
+    width: calc(100% - 32px) !important;
+    max-width: calc(100% - 32px) !important;
+    padding-inline: 0 !important;
+    margin-inline: auto !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* ==========================================================================
+   PREMIUM CTA BANNER & GET IN TOUCH BUTTON REFINEMENT
+   ========================================================================== */
+
+.cta-banner-section {
+  background: linear-gradient(135deg, #021a24 0%, #003e4d 50%, #005f75 100%) !important;
+  color: #ffffff !important;
+  padding: 54px 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+.cta-banner-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 36px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.cta-banner-left {
+  max-width: 650px !important;
+}
+
+.cta-eyebrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  color: #38bdf8 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 8px !important;
+}
+
+.cta-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+.cta-banner-left h2 {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: clamp(24px, 2.4vw, 32px) !important;
+  color: #ffffff !important;
+  margin: 0 0 8px 0 !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.3px !important;
+}
+
+.cta-banner-left p {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 15px !important;
+  color: #cbd5e1 !important;
+  margin: 0 !important;
+  line-height: 1.6 !important;
+}
+
+.cta-banner-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Premium Primary Action: Glowing Emerald / Vibrant Teal Button */
+.cta-quote-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  padding: 14px 30px !important;
+  height: 52px !important;
+  border-radius: 50px !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  position: relative !important;
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35) !important;
+  letter-spacing: 0.3px !important;
+}
+
+.cta-quote-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 28px rgba(16, 185, 129, 0.5) !important;
+}
+
+.cta-quote-btn svg {
+  transition: transform 0.25s ease !important;
+}
+
+.cta-quote-btn:hover svg {
+  transform: translateX(4px) !important;
+}
+
+/* Premium Secondary Action: Clean Frosted Glass Call Button */
+.cta-call-btn {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: #ffffff !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 14px 28px !important;
+  height: 52px !important;
+  border-radius: 50px !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  letter-spacing: 0.3px !important;
+}
+
+.cta-call-btn:hover {
+  background: #ffffff !important;
+  color: #005f75 !important;
+  border-color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 26px rgba(255, 255, 255, 0.25) !important;
+}
+
+.cta-call-btn svg {
+  color: #38bdf8 !important;
+  transition: transform 0.25s ease, color 0.25s ease !important;
+}
+
+.cta-call-btn:hover svg {
+  color: #005f75 !important;
+  transform: scale(1.15) rotate(12deg) !important;
+}
+
+@media (max-width: 900px) {
+  .cta-banner-inner {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 24px !important;
+  }
+
+  .cta-banner-left {
+    max-width: 100% !important;
+  }
+
+  .cta-eyebrow {
+    justify-content: center !important;
+  }
+
+  .cta-banner-right {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+
+  .cta-quote-btn,
+  .cta-call-btn {
+    width: 100% !important;
+  }
+}
+
+/* ==========================================================================
+   CONTENT DESCRIPTIONS & NARRATIVE PARAGRAPHS - JUSTIFIED TEXT STYLE
+   ========================================================================== */
+.about-description,
+.ab-copy p,
+.ab-intro-p,
+.ab-journey-text p,
+.ab-mission-col-item p,
+.tech-copy p,
+.tech-p,
+.tech-card-body p,
+.tech-why-card p,
+.infra-copy p,
+.infra-p,
+.infra-card-body p,
+.infra-why-card p,
+.pdp-overview-left p,
+.pdp-tab-extra-content p,
+.pdp-extra-card p,
+.pdp-value-text p,
+.pdp-video-caption p,
+.pdp-product-tagline,
+.pp-card-desc,
+.pp-modal-desc,
+.app-card-desc,
+.app-overview-desc,
+.cert-card-desc,
+.cert-overview-desc,
+.gal-card-desc,
+.hd-card-desc,
+.hd-card-tagline,
+.why-desc,
+.about-brief p,
+.feature-card p,
+.content-text p,
+article p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* ==========================================================================
+   SECTION HEADERS, SUBTITLES & STAT LABELS - CENTER ALIGNED
+   ========================================================================== */
+.precision-banner-header,
+.precision-banner-header h2,
+.precision-banner-header p,
+.section-header,
+.section-header h2,
+.section-header p,
+.section-description,
+.testing-header,
+.testing-header h2,
+.testing-header p,
+.cert-header,
+.cert-header h2,
+.cert-header p,
+.industries-header,
+.text-center,
+.text-center p,
+.precision-banner-stat-card,
+.precision-banner-stat-card *,
+.stat-card,
+.stat-card * {
+  text-align: center !important;
+}
+
+.precision-banner-header p {
+  margin: 0 auto !important;
+  text-align: center !important;
+  display: block;
+}

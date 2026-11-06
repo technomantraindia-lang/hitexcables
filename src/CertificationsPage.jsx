@@ -32,6 +32,7 @@ import './CertificationsPage.css';
 const A = '/assets/';
 
 export default function CertificationsPage({ onNavigate }) {
+  const [visibleCount, setVisibleCount] = React.useState(15);
   // IntersectionObserver for reveal animations
   React.useEffect(() => {
     const elements = document.querySelectorAll(
@@ -96,48 +97,135 @@ export default function CertificationsPage({ onNavigate }) {
     }
   ];
 
-  const certificateCards = [
+    const certificateCards = [
     {
-      title: 'ISO 9001:2015',
-      desc: 'Quality Management System',
-      img: `${A}cert_crops/cert_1.png`
+      title: 'IS 694 : 2010 (2025-26)',
+      desc: 'PVC Insulated Cables for Working Voltages up to and including 1100 V (Household & Flexible Wires)',
+      docNumber: 'CM/L-7576290',
+      img: '/icons/bis_isi_mark.png',
+      pdf: '/certificates/IS_694_2025-26.pdf'
     },
     {
-      title: 'IS 694 Certification',
-      desc: 'Household Wires',
-      img: `${A}cert_crops/cert_2.png`
+      title: 'IS 694 FRLS INCLUSION',
+      desc: 'Official BIS Inclusion for Flame Retardant Low Smoke (FRLS) Cables',
+      docNumber: 'CM/L-7576290',
+      img: '/icons/bis_isi_mark.png',
+      pdf: '/certificates/IS_694_FRLS_INCLUSION.pdf'
     },
     {
-      title: 'IS 1554 Approval',
-      desc: 'Flexible Cables',
-      img: `${A}cert_crops/cert_3.png`
+      title: 'IS 694 HR FR INCLUSION',
+      desc: 'Official BIS Inclusion for Heat Resistant & Flame Retardant (HR FR) Wires',
+      docNumber: 'CM/L-7576290',
+      img: '/icons/bis_isi_mark.png',
+      pdf: '/certificates/IS_694_HR_FR_INCLUSION.pdf'
     },
     {
-      title: 'IS 7098 Approval',
-      desc: 'Control Cables',
-      img: `${A}cert_crops/cert_4.png`
+      title: 'IS 1554 UP TO 2031',
+      desc: 'PVC Insulated Heavy Duty Electric Cables for Working Voltages up to and including 1100 V',
+      docNumber: 'CM/L-7565689',
+      img: '/icons/bis_isi_mark.png',
+      pdf: '/certificates/IS_1554_UP_TO_2031.pdf'
     },
     {
-      title: 'CE Compliance',
-      desc: 'European Conformity',
-      img: `${A}cert_crops/cert_5.png`
+      title: 'IS 1554 FRLSH INCLUSION',
+      desc: 'Official BIS Inclusion for FRLSH Heavy Duty Industrial Power Cables',
+      docNumber: 'CM/L-7565689',
+      img: '/icons/bis_isi_mark.png',
+      pdf: '/certificates/IS_1554_FRLSH_INCLUSION.pdf'
     },
     {
-      title: 'Government Approval',
-      desc: 'Govt. of India',
-      img: `${A}cert_crops/cert_6.png`
+      title: 'IS 7098 2026-31',
+      desc: 'Crosslinked Polyethylene (XLPE) Insulated PVC Sheathed Cables for Working Voltage up to 1100 V',
+      docNumber: 'CM/L-3656874',
+      img: '/icons/bis_isi_mark.png',
+      pdf: '/certificates/IS_7098_2026-31.pdf'
     },
     {
-      title: 'Quality Management',
-      desc: 'Manufacturing & Supply',
-      img: `${A}cert_crops/cert_7.png`
+      title: 'IS 7098 FRLS INCLUSION',
+      desc: 'Official BIS Inclusion for XLPE Insulated FRLS Armoured Cables',
+      docNumber: 'CM/L-3656874',
+      img: '/icons/bis_isi_mark.png',
+      pdf: '/certificates/IS_7098_FRLS_INCLUSION.pdf'
     },
     {
-      title: 'Testing Report',
-      desc: 'Independent Lab Testing',
-      img: `${A}cert_crops/cert_8.png`
-    }
+      title: 'ISO 9001 : 2015 CERTIFICATE',
+      desc: 'Quality Management System for Manufacturing and Sales of High Performance Wires & Cables',
+      docNumber: 'QMS Certified',
+      img: '/icons/ISO.png',
+      pdf: '/certificates/ISO_CERTI.pdf'
+    },
+    {
+      title: 'ZED CERTIFICATE (MSME)',
+      desc: 'Ministry of MSME Certified Quality & Sustainable Manufacturing',
+      docNumber: 'Zero Defect Zero Effect',
+      img: '/icons/Premium Quality.png',
+      pdf: '/certificates/ZED_CERTI_JAY_CABLE.pdf'
+    },
+    {
+      title: 'UDYAM REGISTRATION CERTIFICATE',
+      desc: 'Official Ministry of Micro, Small and Medium Enterprises Registration',
+      docNumber: 'Govt. of India MSME',
+      img: '/icons/GOVT APPROVED.png',
+      pdf: '/certificates/UDYAM_CERTI.pdf'
+    },
+    {
+      title: 'HITEX PLUS REGISTER TRADE MARK',
+      desc: 'Government of India Registered Trademark Certificate for HITEX PLUS',
+      docNumber: 'Trade Marks Registry',
+      img: '/icons/Shield of Safety.png',
+      pdf: '/certificates/HITEX_PLUS_REGISTER_TRADE_MARK_NEW.pdf'
+    },
+    {
+      title: 'FACTORY LICENSE CERTIFICATE',
+      desc: 'Directorate of Industrial Safety & Health Official Factory License',
+      docNumber: 'Govt. of Gujarat',
+      img: '/icons/GOVT APPROVED.png',
+      pdf: '/certificates/factory_liecense.pdf'
+    },
+    {
+      title: 'GSECL APPROVAL LETTER',
+      desc: 'Gujarat State Electricity Corporation Limited Official Vendor Approval',
+      docNumber: 'Power Generation Utility',
+      img: '/icons/GOVT APPROVED.png',
+      pdf: '/certificates/GSECL_Approval_Letter.pdf'
+    },
+    {
+      title: 'GSRTC APPROVAL LETTER',
+      desc: 'Gujarat State Road Transport Corporation Vendor & Product Approval',
+      docNumber: 'State Transport Corporation',
+      img: '/icons/GOVT APPROVED.png',
+      pdf: '/certificates/GSRTC.pdf'
+    },
+    {
+      title: 'MPUDC APPROVAL LETTER',
+      desc: 'Madhya Pradesh Urban Development Company Limited Official Approval',
+      docNumber: 'Urban Development Corporation',
+      img: '/icons/GOVT APPROVED.png',
+      pdf: '/certificates/MPUDC_APPRUVAL_LETTER.pdf'
+    },
+    {
+      title: 'R & B APPROVAL (UP TO MARCH 2027)',
+      desc: 'Government of Gujarat Roads & Buildings Department Approved Vendor',
+      docNumber: 'Roads & Buildings Dept.',
+      img: '/icons/GOVT APPROVED.png',
+      pdf: '/certificates/R___B_UP_TO_MARCH_2027.pdf'
+    },
+    {
+      title: 'IEC (IMPORT EXPORT CODE)',
+      desc: 'Directorate General of Foreign Trade Import Export Code License',
+      docNumber: 'DGFT, Ministry of Commerce',
+      img: '/icons/GEM.png',
+      pdf: '/certificates/IEC_IMPORT_EXPORT__Certificate.pdf'
+    },
+    {
+      title: 'LEI CERTIFICATE',
+      desc: 'Legal Entity Identifier Certificate for International Banking & Commercial Operations',
+      docNumber: 'Legal Entity Identifier',
+      img: '/icons/Support.png',
+      pdf: '/certificates/LEI_Certificate_16122026.pdf'
+    },
   ];
+
 
   const processSteps = [
     {
@@ -195,7 +283,7 @@ export default function CertificationsPage({ onNavigate }) {
       {/* -------------------------------------------------------------------------- */}
       {/* SECTION 1: HERO BANNER                                                     */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="cert-hero-section">
+      <section className="cert-hero-section page-banner">
         <div className="cert-container cert-hero-grid">
           <div className="cert-hero-copy cert-reveal-left">
             <nav className="cert-breadcrumb" aria-label="Breadcrumb">
@@ -245,16 +333,34 @@ export default function CertificationsPage({ onNavigate }) {
       {/* -------------------------------------------------------------------------- */}
       <section className="cert-strip-section">
         <div className="cert-container">
-          <div className="cert-strip-grid cert-reveal">
-            {complianceBadges.map((b, idx) => (
-              <div className="cert-strip-item" key={idx}>
-                <div className="cert-strip-icon">
-                  <img src={b.iconImg} alt={b.title} />
-                </div>
-                <strong>{b.title}</strong>
-                <span>{b.desc}</span>
+          <div className="cert-strip-intro cert-reveal">
+            <div className="cert-strip-visual" aria-hidden="true">
+              <div className="cert-strip-visual-mark">
+                <img src={complianceBadges[0].iconImg} alt="" />
               </div>
-            ))}
+              <span>QUALITY<br />ASSURED</span>
+            </div>
+            <div className="cert-strip-content">
+              <div className="cert-eyebrow-line">
+                <span className="cert-line-bar"></span>
+                <span className="cert-eyebrow">QUALITY &amp; COMPLIANCE</span>
+              </div>
+              <h2 className="cert-h2">Recognised standards. Reliable performance.</h2>
+              <p className="cert-p">
+                Every HITEX PLUS product is developed with a clear focus on quality, safety and compliance.
+              </p>
+              <div className="cert-strip-grid">
+                {complianceBadges.map((b, idx) => (
+                  <div className="cert-strip-item" key={idx}>
+                    <div className="cert-strip-icon">
+                      <img src={b.iconImg} alt={b.title} />
+                    </div>
+                    <strong>{b.title}</strong>
+                    <span>{b.desc}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -337,17 +443,47 @@ export default function CertificationsPage({ onNavigate }) {
           </div>
 
           <div className="cert-cards-grid cert-reveal-scale">
-            {certificateCards.map((c, idx) => (
+            {certificateCards.slice(0, visibleCount).map((c, idx) => (
               <div className="cert-card" key={idx}>
                 <div className="cert-card-img-box">
-                  <img src={c.img} alt={c.title} />
+                  <img src={c.img} alt={c.title} loading="lazy" />
                 </div>
                 <div className="cert-card-body">
-                  <h4>{c.title}</h4>
-                  <p>{c.desc}</p>
+                  <div className="cert-card-title-row">
+                    <span className="cert-doc-number">{c.docNumber}</span>
+                  </div>
+                  <h4 title={c.title}>{c.title}</h4>
+                  <p className="cert-card-desc">{c.desc}</p>
+                  <a
+                    href={c.pdf}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cert-download-link"
+                  >
+                    DOWNLOAD <Download size={14} />
+                  </a>
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="cert-view-more-wrapper">
+            {visibleCount < certificateCards.length ? (
+              <button
+                className="cert-view-more-btn"
+                onClick={() => setVisibleCount((prev) => Math.min(prev + 6, certificateCards.length))}
+              >
+                VIEW MORE
+              </button>
+            ) : (
+              <button
+                className="cert-view-more-btn secondary"
+                onClick={() => setVisibleCount(15)}
+              >
+                SHOW LESS
+              </button>
+            )}
           </div>
         </div>
       </section>
@@ -414,51 +550,42 @@ export default function CertificationsPage({ onNavigate }) {
       {/* SECTION 7: BOTTOM CTA BANNER                                               */}
       {/* -------------------------------------------------------------------------- */}
       <section className="cert-bottom-cta">
-        <div className="cert-bottom-cta-inner cert-reveal">
-          <div className="cert-bottom-cta-left">
-            <span className="cert-cta-kicker">CERTIFIED FOR A BRIGHTER TOMORROW</span>
-            <h2>Need Certified Cable Solutions?</h2>
-            <p>
-              Partner with HITEX PLUS for safe, reliable and high-performance cables that meet global standards.
-            </p>
-            <div className="cert-cta-btns">
-              <button
-                className="cert-btn-outline-white"
-                onClick={() => alert('Downloading Catalogue...')}
-              >
-                <Download size={16} /> Download Catalogue
-              </button>
-              <button
-                className="cert-btn-teal"
-                onClick={() => {
-                  if (onNavigate) onNavigate('contact');
-                }}
-              >
-                Contact Us <ArrowRight size={16} />
-              </button>
-            </div>
-          </div>
-
-          <div className="cert-bottom-cta-right">
-            <div className="cert-cta-badges-column">
-              <div className="cert-cta-badge-pill">
-                <Shield size={20} color="#38bdf8" />
-                <span>Reliable Quality</span>
+        <div className="cert-container">
+          <div className="cert-bottom-cta-inner cert-reveal">
+            <div className="cert-bottom-cta-left">
+              <span className="cert-cta-kicker">CERTIFIED FOR A BRIGHTER TOMORROW</span>
+              <h2>Certified quality. Engineered for reliability.</h2>
+              <p>
+                Partner with HITEX PLUS for safe, reliable and high-performance cables that meet global standards.
+              </p>
+              <div className="cert-cta-btns">
+                <a
+                  className="cert-btn-outline-white"
+                  href="/HITEX_PLUS_Catalogue.pdf"
+                  download="HITEX_PLUS_Catalogue.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                >
+                  <Download size={16} /> Download Catalogue
+                </a>
+                <button
+                  className="cert-btn-teal"
+                  onClick={() => {
+                    if (onNavigate) onNavigate('contact');
+                  }}
+                >
+                  Contact Us <ArrowRight size={16} />
+                </button>
               </div>
-              <div className="cert-cta-badge-pill">
-                <Cog size={20} color="#38bdf8" />
-                <span>Proven Performance</span>
-              </div>
-              <div className="cert-cta-badge-pill">
-                <Users size={20} color="#38bdf8" />
-                <span>A Safer Tomorrow</span>
+              <div className="cert-cta-trust-row" aria-label="HITEX PLUS quality commitments">
+                <span><Shield size={17} /> Reliable Quality</span>
+                <span><Cog size={17} /> Proven Performance</span>
+                <span><Users size={17} /> A Safer Tomorrow</span>
               </div>
             </div>
-            <div className="cert-cta-img-box">
-              <img
-                src={`${A}cert_crops/cert_cta_graphic.png`}
-                alt="HITEX PLUS Cable Solutions"
-              />
+            <div className="cert-bottom-cta-visual" aria-hidden="true">
+              <img src={`${A}wire image.png`} alt="" />
             </div>
           </div>
         </div>

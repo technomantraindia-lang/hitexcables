@@ -10,7 +10,6 @@ import {
   Database,
   Factory,
   Flame,
-  Gem,
   HardHat,
   HeartHandshake,
   Home,
@@ -110,7 +109,7 @@ export default function ApplicationsPage({ onNavigate }) {
       {/* -------------------------------------------------------------------------- */}
       {/* SECTION 1: HERO BANNER                                                     */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="app-hero-section">
+      <section className="app-hero-section page-banner">
         <div className="app-container">
           <div className="app-hero-content app-reveal-left">
             <nav className="app-breadcrumb" aria-label="Breadcrumb">
@@ -226,45 +225,33 @@ export default function ApplicationsPage({ onNavigate }) {
         <div className="app-container">
           <div className="app-cta-inner app-reveal">
             <div className="app-cta-left">
-              <span className="app-cta-kicker">
-                TOGETHER FOR A BRIGHTER TOMORROW
-              </span>
-              <h2>Reliable Cables for Every Application</h2>
+              <span className="app-cta-kicker">FIND THE RIGHT CABLE SOLUTION</span>
+              <h2>Built for Every Application</h2>
               <p>
                 Partner with HITEX PLUS for high-quality, safe and innovative cable
                 solutions tailored to your industry.
               </p>
-              <button
-                className="app-btn-green"
-                onClick={() => {
-                  if (onNavigate) onNavigate('contact');
-                }}
-              >
-                Enquire Now <ArrowRight size={16} />
-              </button>
+              <div className="app-cta-actions">
+                <button
+                  className="app-btn-green"
+                  onClick={() => {
+                    if (onNavigate) onNavigate('contact');
+                  }}
+                >
+                  Enquire Now <ArrowRight size={16} />
+                </button>
+                <button
+                  className="app-cta-secondary-btn"
+                  onClick={() => {
+                    if (onNavigate) onNavigate('products');
+                  }}
+                >
+                  Explore Products <ArrowRight size={16} />
+                </button>
+              </div>
             </div>
-
-            <div className="app-cta-right-cards">
-              <div className="app-cta-feature-card">
-                <div className="app-cta-card-icon">
-                  <Gem size={32} strokeWidth={1.8} />
-                </div>
-                <span>High Durability</span>
-              </div>
-
-              <div className="app-cta-feature-card">
-                <div className="app-cta-card-icon">
-                  <Cog size={32} strokeWidth={1.8} />
-                </div>
-                <span>Wide Range</span>
-              </div>
-
-              <div className="app-cta-feature-card">
-                <div className="app-cta-card-icon">
-                  <Leaf size={32} strokeWidth={1.8} />
-                </div>
-                <span>Sustainable Solutions</span>
-              </div>
+            <div className="app-cta-visual" aria-hidden="true">
+              <img src={`${A}app_4.png`} alt="" />
             </div>
           </div>
         </div>

@@ -19,7 +19,6 @@ import {
   Leaf,
   Lightbulb,
   Microscope,
-  Phone,
   Play,
   Quote,
   Recycle,
@@ -61,7 +60,7 @@ export default function TechnologyPage({ onNavigate }) {
       {/* -------------------------------------------------------------------------- */}
       {/* HERO BANNER SECTION                                                        */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="tech-hero-section">
+      <section className="tech-hero-section page-banner">
         <div className="tech-container tech-hero-grid">
           <div className="tech-hero-copy tech-reveal-left">
             <nav className="tech-breadcrumb" aria-label="Breadcrumb">
@@ -78,6 +77,7 @@ export default function TechnologyPage({ onNavigate }) {
               <span className="tech-crumb-current">Technology</span>
             </nav>
 
+            <span className="tech-hero-eyebrow">TECHNOLOGY &amp; INNOVATION</span>
             <h1 className="tech-hero-title">Technology</h1>
             <h3 className="tech-hero-subtitle">
               Innovation in <span className="tech-text-cyan">Every Connection</span>
@@ -116,6 +116,9 @@ export default function TechnologyPage({ onNavigate }) {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="tech-hero-visual tech-reveal-right" aria-hidden="true">
+            <img src={`${A}technology_hero_banner.jpg`} alt="" />
           </div>
         </div>
       </section>
@@ -310,37 +313,32 @@ export default function TechnologyPage({ onNavigate }) {
             <div className="tech-why-header-box tech-reveal-left">
               <span className="tech-eyebrow">WHY CHOOSE HITEX PLUS</span>
               <h2 className="tech-h2">Technology That Powers Progress</h2>
+              <p>From the factory floor to the finished coil, every stage is designed to deliver safer, more dependable connections.</p>
             </div>
 
             <div className="tech-why-row tech-reveal">
               <div className="tech-why-cards-row">
                 <div className="tech-why-card">
                   <div className="tech-why-icon"><Building2 size={34} /></div>
-                  <strong>Advanced<br />Infrastructure</strong>
+                  <div className="tech-why-card-copy"><strong>Advanced Infrastructure</strong><span>Modern production systems built for consistent performance.</span></div>
                 </div>
 
                 <div className="tech-why-card">
                   <div className="tech-why-icon"><Cog size={34} /></div>
-                  <strong>Strict Quality<br />Control</strong>
+                  <div className="tech-why-card-copy"><strong>Strict Quality Control</strong><span>Rigorous checks help every cable meet our high standards.</span></div>
                 </div>
 
                 <div className="tech-why-card">
                   <div className="tech-why-icon"><Sparkles size={34} /></div>
-                  <strong>Innovative<br />R&amp;D</strong>
+                  <div className="tech-why-card-copy"><strong>Innovative R&amp;D</strong><span>Smarter cable solutions engineered for changing needs.</span></div>
                 </div>
 
                 <div className="tech-why-card">
                   <div className="tech-why-icon"><Leaf size={34} /></div>
-                  <strong>Sustainable<br />Manufacturing</strong>
+                  <div className="tech-why-card-copy"><strong>Sustainable Manufacturing</strong><span>Responsible practices that support a cleaner future.</span></div>
                 </div>
               </div>
 
-              <div className="tech-why-slogan-box">
-                <span className="tech-slogan-cyan">MORE THAN</span>
-                <span className="tech-slogan-navy">CABLES,</span>
-                <span className="tech-slogan-cyan">WE BUILD</span>
-                <span className="tech-slogan-green">TRUST.</span>
-              </div>
             </div>
           </div>
         </div>
@@ -350,27 +348,33 @@ export default function TechnologyPage({ onNavigate }) {
       {/* SECTION 7: BOTTOM CTA                                                      */}
       {/* -------------------------------------------------------------------------- */}
       <section className="tech-bottom-cta">
-        <div className="tech-bottom-cta-inner tech-reveal">
-          <div className="tech-bottom-cta-text">
-            <h2>LET'S BUILD A SAFER TOMORROW</h2>
-            <p>Partner with HITEX PLUS for reliable, high-quality wires and cables that keep the world connected.</p>
-          </div>
-          <div className="tech-bottom-cta-btns">
-            <button
-              className="tech-btn-teal"
-              style={{ background: '#16a34a' }}
-              onClick={() => alert('Enquiry form modal')}
-            >
-              Enquire Now <ArrowRight size={16} />
-            </button>
-            <button
-              className="tech-btn-outline-white"
-              onClick={() => {
-                if (onNavigate) onNavigate('contact');
-              }}
-            >
-              Contact Us <ArrowRight size={16} />
-            </button>
+        <div className="tech-container">
+          <div className="tech-bottom-cta-inner tech-reveal">
+            <div className="tech-bottom-cta-text">
+              <span className="tech-cta-eyebrow">ENGINEERED FOR YOUR REQUIREMENTS</span>
+              <h2>Need the Right Cable Solution for Your Project?</h2>
+              <p>Partner with HITEX PLUS for reliable, high-quality wires and cables that keep the world connected.</p>
+              <div className="tech-bottom-cta-btns">
+                <button
+                  className="tech-btn-teal"
+                  style={{ background: '#16a34a' }}
+                  onClick={() => alert('Enquiry form modal')}
+                >
+                  Enquire Now <ArrowRight size={16} />
+                </button>
+                <button
+                  className="tech-btn-outline-white"
+                  onClick={() => {
+                    if (onNavigate) onNavigate('contact');
+                  }}
+                >
+                  Contact Us <ArrowRight size={16} />
+                </button>
+              </div>
+            </div>
+            <div className="tech-cta-visual" aria-hidden="true">
+              <img src={`${A}wire image.png`} alt="" />
+            </div>
           </div>
         </div>
       </section>

@@ -136,7 +136,7 @@ function InfraSlider({ title, subtitle, caption, items, sectionClass = '' }) {
                 style={{ flex: `0 0 calc(${100 / cardsToShow}% - ${(20 * (cardsToShow - 1)) / cardsToShow}px)` }}
               >
                 <div className="infra-card-img-box">
-                  <img src={m.img} alt={m.title} />
+                  <img src={m.img} alt={m.title} loading="lazy" />
                 </div>
                 <div className="infra-card-body">
                   <h4>{m.title}</h4>
@@ -317,14 +317,13 @@ export default function InfrastructurePage({ onNavigate }) {
       {/* -------------------------------------------------------------------------- */}
       {/* SECTION 1: HERO BANNER                                                     */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="infra-hero-section">
+      <section className="infra-hero-section page-banner">
         <div className="infra-container infra-hero-grid">
           <div className="infra-hero-copy infra-reveal-left">
             <span className="infra-hero-kicker">OUR INFRASTRUCTURE</span>
             <h1 className="infra-hero-title">Infrastructure</h1>
             <p className="infra-hero-desc">
-              Advanced facilities. Quality production systems.<br />
-              Modern machinery. Testing support. Built for a stronger tomorrow.
+              Advanced facilities. Quality production systems. Modern machinery, testing support and a foundation built for a stronger tomorrow.
             </p>
             <nav className="infra-breadcrumb" aria-label="Breadcrumb">
               <a
@@ -369,7 +368,7 @@ export default function InfrastructurePage({ onNavigate }) {
             </div>
 
             <div className="infra-img-stage infra-reveal-right">
-              <img src={`${A}image 16.jpeg`} alt="HITEX Infrastructure Manufacturing Plant" />
+              <img src={`${A}image_16_clean.jpeg?v=2`} alt="HITEX Infrastructure Manufacturing Plant" />
               <div className="infra-img-tag">
                 MODERN FACILITIES<br />FOR A BRIGHTER<br />CONNECTED WORLD
               </div>
@@ -522,7 +521,7 @@ export default function InfrastructurePage({ onNavigate }) {
           <div className="infra-gallery-grid infra-reveal-scale" id="gallery-scroll">
             {galleryImages.map((src, idx) => (
               <div className="infra-gallery-card" key={idx}>
-                <img src={src} alt={`HITEX Facility Gallery ${idx + 1}`} />
+                <img src={src} alt={`HITEX Facility Gallery ${idx + 1}`} loading="lazy" />
               </div>
             ))}
           </div>
@@ -535,7 +534,9 @@ export default function InfrastructurePage({ onNavigate }) {
       <section className="infra-section infra-why-section">
         <div className="infra-container">
           <div className="infra-why-header infra-reveal">
+            <span className="infra-why-eyebrow">BUILT FOR DEPENDABLE OUTPUT</span>
             <h2 className="infra-why-title">WHY OUR INFRASTRUCTURE MATTERS</h2>
+            <p>Every capability works together to make production safer, more precise and ready for what comes next.</p>
           </div>
 
           <div className="infra-why-cards-grid infra-reveal-scale">
@@ -556,28 +557,30 @@ export default function InfrastructurePage({ onNavigate }) {
       {/* SECTION 9: BOTTOM CTA BANNER                                               */}
       {/* -------------------------------------------------------------------------- */}
       <section className="infra-bottom-cta">
-        <div className="infra-bottom-cta-inner infra-reveal">
-          <div className="infra-bottom-cta-text">
-            <span>LET'S BUILD A STRONGER TOMORROW</span>
-            <h2>Interested in Our Manufacturing Capabilities?</h2>
-            <p>Get in touch with our team to know more about our infrastructure, production capacity and customized solutions.</p>
-          </div>
-          <div className="infra-bottom-cta-btns">
-            <button
-              className="infra-btn-teal"
-              style={{ background: '#16a34a' }}
-              onClick={() => alert('Enquiry Form Modal')}
-            >
-              Enquire Now <ArrowRight size={16} />
-            </button>
-            <button
-              className="infra-btn-outline-white"
-              onClick={() => {
-                if (onNavigate) onNavigate('contact');
-              }}
-            >
-              Contact Us <ArrowRight size={16} />
-            </button>
+        <div className="infra-container">
+          <div className="infra-bottom-cta-inner infra-reveal">
+            <div className="infra-bottom-cta-text">
+              <span>LET'S BUILD A STRONGER TOMORROW</span>
+              <h2>Interested in Our Manufacturing Capabilities?</h2>
+              <p>Get in touch with our team to know more about our infrastructure, production capacity and customized solutions.</p>
+            </div>
+            <div className="infra-bottom-cta-btns">
+              <button
+                className="infra-btn-teal"
+                style={{ background: '#16a34a' }}
+                onClick={() => alert('Enquiry Form Modal')}
+              >
+                Enquire Now <ArrowRight size={16} />
+              </button>
+              <button
+                className="infra-btn-outline-white"
+                onClick={() => {
+                  if (onNavigate) onNavigate('contact');
+                }}
+              >
+                Contact Us <ArrowRight size={16} />
+              </button>
+            </div>
           </div>
         </div>
       </section>

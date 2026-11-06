@@ -17,3 +17,7 @@ icons/
 previews/
 styles/
 mimetype
+scratch/
+*.crdownload
+deploy_key*
+

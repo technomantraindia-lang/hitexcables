@@ -13,7 +13,6 @@ import {
   FileText,
   Filter,
   Leaf,
-  Phone,
   RotateCcw,
   Search,
   Shield,
@@ -34,8 +33,8 @@ const initialProducts = [
     category: 'House Wires',
     app: 'Residential',
     cert: 'ISI Certified',
-    img: `${A}cable_clean_1.png`,
-    details: 'HITEX PLUS House Wires are manufactured with 99.99% pure electrolytic grade copper and high flame-retardant (FR) PVC insulation for maximum safety in residential homes.'
+    img: `${A}household_wires_clean.jpg`,
+    details: 'HITEX PLUS House Wires are manufactured with 99.99% pure electrolytic grade copper and high flame-retardant (FR) PVC insulation for maximum safety in residential homes. Available in sizes from 0.5 sq. mm to 95.0 sq. mm.'
   },
   {
     id: 2,
@@ -44,7 +43,7 @@ const initialProducts = [
     category: 'Industrial Cables',
     app: 'Industrial',
     cert: 'RoHS Compliant',
-    img: `${A}cable_clean_2.png`,
+    img: `${A}unarmoured_cables.jpg`,
     details: 'Heavy duty multi-core PVC/XLPE insulated industrial cables engineered to withstand severe thermal and mechanical stresses in manufacturing plants.'
   },
   {
@@ -54,17 +53,17 @@ const initialProducts = [
     category: 'Control Cables',
     app: 'Industrial',
     cert: 'REACH Compliant',
-    img: `${A}cable_clean_3.png`,
+    img: `${A}pvc_insulated_cable.jpg`,
     details: 'Designed for control circuits, automation systems, and signal transmission with high shielding efficiency against electromagnetic interference.'
   },
   {
     id: 4,
-    name: 'Power Cables',
+    name: 'XLPE Aluminium/Copper Armoured Cable',
     desc: 'Strength for Growth',
     category: 'Power Cables',
     app: 'Infrastructure',
     cert: 'CE Certified',
-    img: `${A}cable_clean_4.png`,
+    img: `${A}copper_armoured_cable.jpg`,
     details: 'High-voltage armored power cables engineered for underground power distribution, power stations, and heavy utility grid networks.'
   },
   {
@@ -74,17 +73,17 @@ const initialProducts = [
     category: 'Specialty Cables',
     app: 'Commercial',
     cert: 'ISI Certified',
-    img: `${A}cable_clean_8.png`,
+    img: `${A}1000_sqmm_single_core_aluminium_cable.jpeg`,
     details: 'Custom engineered specialty cables designed for extreme temperature, chemical resistance, and special industrial machinery applications.'
   },
   {
     id: 6,
-    name: 'Solar Cables',
+    name: 'Solar DC Cable',
     desc: 'UV & Weather Resistant',
     category: 'Solar Cables',
     app: 'Renewable Energy',
     cert: 'RoHS Compliant',
-    img: `${A}cable_clean_6.png`,
+    img: `${A}solar_cables_dc.jpg`,
     details: 'Cross-linked solar DC cables engineered for solar PV power systems with high UV, ozone, and extreme weather endurance.'
   },
   {
@@ -94,7 +93,7 @@ const initialProducts = [
     category: 'Submersible Cables',
     app: 'Industrial',
     cert: 'ISI Certified',
-    img: `${A}cable_clean_7.png`,
+    img: `${A}submersible_pvc_flat_cable.jpg`,
     details: '3-Core flat submersible pump cables designed to operate continuously under water in deep tube wells and irrigation pumps.'
   },
   {
@@ -104,7 +103,7 @@ const initialProducts = [
     category: 'Industrial Cables',
     app: 'Infrastructure',
     cert: 'CE Certified',
-    img: `${A}cable_clean_5.png`,
+    img: `${A}aluminium_unarmoured_cable.jpg`,
     details: 'Self-supporting insulated aerial bunched cables (ABC) for overhead power lines, eliminating power theft and short circuits.'
   },
   {
@@ -114,7 +113,7 @@ const initialProducts = [
     category: 'Specialty Cables',
     app: 'Commercial',
     cert: 'REACH Compliant',
-    img: `${A}cable_clean_4.png`,
+    img: `${A}xlpe_cop_allu_unarm_arm_cable.jpg`,
     details: 'Fire resistant cables designed to maintain electrical circuit integrity during fire hazards in high-rise buildings and hospitals.'
   },
   {
@@ -124,7 +123,7 @@ const initialProducts = [
     category: 'House Wires',
     app: 'Residential',
     cert: 'ISI Certified',
-    img: `${A}cable_clean_3.png`,
+    img: `${A}multicore_flexible_cable.jpg`,
     details: 'Multi-strand flexible copper conductors ideal for internal wiring, home appliances, electrical panels, and mobile machinery.'
   },
   {
@@ -134,7 +133,7 @@ const initialProducts = [
     category: 'Control Cables',
     app: 'Industrial',
     cert: 'RoHS Compliant',
-    img: `${A}cable_clean_2.png`,
+    img: `${A}pvc_insulated_cable.jpg`,
     details: 'Pair/Triad instrument cables for precise analog and digital signal communication in process control and oil refineries.'
   },
   {
@@ -144,7 +143,7 @@ const initialProducts = [
     category: 'Power Cables',
     app: 'Renewable Energy',
     cert: 'CE Certified',
-    img: `${A}cable_clean_1.png`,
+    img: `${A}copper_armoured_cable.jpg`,
     details: 'High-current flexible EV charging station cables built with flame retardant compounds and superior thermal stability.'
   }
 ];
@@ -156,7 +155,7 @@ const categories = [
   { name: 'Control Cables', count: 2 },
   { name: 'Power Cables', count: 2 },
   { name: 'Specialty Cables', count: 2 },
-  { name: 'Solar Cables', count: 1 },
+  { name: 'Solar DC Cable', count: 1 },
   { name: 'Submersible Cables', count: 1 }
 ];
 
@@ -246,7 +245,7 @@ export default function ProductPage({ onNavigate }) {
       {/* -------------------------------------------------------------------------- */}
       {/* HERO BANNER SECTION                                                        */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="pp-hero-section">
+      <section className="pp-hero-section page-banner">
         <div className="pp-container pp-hero-grid">
           <div className="pp-hero-copy pp-reveal-left">
             <nav className="pp-breadcrumb" aria-label="Breadcrumb">
@@ -432,7 +431,29 @@ export default function ProductPage({ onNavigate }) {
                 <article
                   key={product.id}
                   className="pp-product-card"
-                  style={{ animationDelay: `${idx * 50}ms` }}
+                  style={{ animationDelay: `${idx * 50}ms`, cursor: 'pointer' }}
+                  onClick={() => {
+                    const productSlugMap = {
+                      1: 'house-wires',
+                      2: 'industrial-cables',
+                      3: 'control-cables',
+                      4: 'xlpe-armoured-cable',
+                      5: 'specialty-cables',
+                      6: 'solar-dc-cable',
+                      7: 'submersible-cables',
+                      8: 'aerial-bunched-cables',
+                      9: 'fire-survival-cables',
+                      10: 'flexible-cables',
+                      11: 'instrumentation-cables',
+                      12: 'ev-charging-cables'
+                    };
+                    const slug = productSlugMap[product.id] || 'house-wires';
+                    if (onNavigate) {
+                      onNavigate('product-details', slug);
+                    } else {
+                      window.location.href = `/product-details?product=${slug}`;
+                    }
+                  }}
                 >
                   <div className="pp-card-img-box">
                     <img src={product.img} alt={product.name} loading="lazy" />
@@ -442,7 +463,29 @@ export default function ProductPage({ onNavigate }) {
                     <p className="pp-card-desc">{product.desc}</p>
                     <button
                       className="pp-card-details-btn"
-                      onClick={() => setActiveModalProduct(product)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const productSlugMap = {
+                          1: 'house-wires',
+                          2: 'industrial-cables',
+                          3: 'control-cables',
+                          4: 'xlpe-armoured-cable',
+                          5: 'specialty-cables',
+                          6: 'solar-dc-cable',
+                          7: 'submersible-cables',
+                          8: 'aerial-bunched-cables',
+                          9: 'fire-survival-cables',
+                          10: 'flexible-cables',
+                          11: 'instrumentation-cables',
+                          12: 'ev-charging-cables'
+                        };
+                        const slug = productSlugMap[product.id] || 'house-wires';
+                        if (onNavigate) {
+                          onNavigate('product-details', slug);
+                        } else {
+                          window.location.href = `/product-details?product=${slug}`;
+                        }
+                      }}
                     >
                       View Details <ArrowRight size={14} />
                     </button>
@@ -522,15 +565,21 @@ export default function ProductPage({ onNavigate }) {
       <section className="pp-cta-section">
         <div className="pp-container pp-cta-inner pp-reveal">
           <div className="pp-cta-left">
-            <div className="pp-cta-phone-icon">
-              <Phone size={26} color="#005f75" />
-            </div>
-            <div>
-              <h2>Need Assistance or Custom Quotation?</h2>
-              <p>Our team is ready to help you find the right cable solution for your needs.</p>
-            </div>
+            <span className="pp-cta-eyebrow">NEED THE RIGHT CABLE SOLUTION?</span>
+            <h2>Let&apos;s Power Your Next Project</h2>
+            <p>Our team is ready to help you find the right cable solution for your needs.</p>
           </div>
-          <div className="pp-cta-right">
+          <div className="pp-cta-right" aria-label="Product enquiry actions">
+            <a
+              href="#contact-us"
+              className="pp-cta-quote-btn"
+              onClick={(e) => {
+                e.preventDefault();
+                if (onNavigate) onNavigate('contact');
+              }}
+            >
+              Request a Quote <ArrowRight size={16} />
+            </a>
             <a
               href="#contact-us"
               className="pp-cta-touch-btn"
@@ -539,7 +588,7 @@ export default function ProductPage({ onNavigate }) {
                 if (onNavigate) onNavigate('contact');
               }}
             >
-              Get In Touch <ArrowRight size={16} />
+              Contact Us <ArrowRight size={16} />
             </a>
           </div>
         </div>

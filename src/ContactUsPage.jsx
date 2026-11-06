@@ -8,8 +8,10 @@ import {
   Headphones,
   HeartHandshake,
   HelpCircle,
+  ExternalLink,
   Mail,
   MapPin,
+  Navigation,
   MessageSquare,
   Phone,
   Send,
@@ -21,6 +23,7 @@ import {
 import './ContactUsPage.css';
 
 export default function ContactUsPage({ onNavigate }) {
+  const [mapMode, setMapMode] = React.useState('satellite');
   const [formData, setFormData] = React.useState({
     name: '',
     email: '',
@@ -77,7 +80,7 @@ export default function ContactUsPage({ onNavigate }) {
       {/* -------------------------------------------------------------------------- */}
       {/* SECTION 1: HERO BANNER                                                     */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="cnt-hero-section">
+      <section className="cnt-hero-section page-banner">
         <div className="cnt-container">
           <div className="cnt-hero-content cnt-reveal-left">
             <nav className="cnt-breadcrumb" aria-label="Breadcrumb">
@@ -159,8 +162,8 @@ export default function ContactUsPage({ onNavigate }) {
                 <Mail size={24} strokeWidth={1.8} />
               </div>
               <h3>E-Mail Us</h3>
-              <p>jaycableind21@gmail.com</p>
-              <p>info@hitexplus.com</p>
+              <p><a href="mailto:info@hitexplus.com" style={{ color: "inherit", textDecoration: "none" }}>info@hitexplus.com</a></p>
+              <p><a href="mailto:sales@hitexplus.com" style={{ color: "inherit", textDecoration: "none" }}>sales@hitexplus.com</a></p>
             </div>
 
             <div className="cnt-info-card">
@@ -168,8 +171,8 @@ export default function ContactUsPage({ onNavigate }) {
                 <MapPin size={24} strokeWidth={1.8} />
               </div>
               <h3>Our Location</h3>
-              <p>Khatano no-234, Survey no-64,</p>
-              <p>Village-Pasuniya, Dahegam, India</p>
+              <p>Jay cable industries, to gamij road,</p>
+              <p>Chandial, Pasuniya, Gujarat 382433</p>
             </div>
 
             <div className="cnt-info-card">
@@ -300,11 +303,17 @@ export default function ContactUsPage({ onNavigate }) {
                   <h3>Our Office</h3>
                   <h4>Visit Us</h4>
                   <div className="cnt-office-details">
-                    <div className="cnt-office-item">
-                      <MapPin size={18} color="#008fa8" />
+                    <div className="cnt-office-item" style={{ alignItems: 'flex-start' }}>
+                      <MapPin size={18} color="#008fa8" style={{ flexShrink: 0, marginTop: '3px' }} />
                       <span>
-                        Khatano no-234, Survey no-64, Village-Pasuniya, Dahegam,
-                        Gandhinagar-382433
+                        Jay cable industries, to gamij road, Chandial, Pasuniya, Gujarat 382433
+                      </span>
+                    </div>
+
+                    <div className="cnt-office-item" style={{ alignItems: 'flex-start' }}>
+                      <MapPin size={18} color="#008fa8" style={{ flexShrink: 0, marginTop: '3px' }} />
+                      <span>
+                        Khatano no-234, Survey no-64, Chandiyel to Gamji Road, Village-Pasuniya, Ta-Dahegam, Di-Gandhinagar-382433
                       </span>
                     </div>
 
@@ -315,7 +324,7 @@ export default function ContactUsPage({ onNavigate }) {
 
                     <div className="cnt-office-item">
                       <Mail size={18} color="#008fa8" />
-                      <span>jaycableind21@gmail.com / info@hitexplus.com</span>
+                      <span>info@hitexplus.com / sales@hitexplus.com</span>
                     </div>
                   </div>
                 </div>
@@ -324,15 +333,53 @@ export default function ContactUsPage({ onNavigate }) {
                   <img
                     src="/assets/image 14.jpeg"
                     alt="HITEX PLUS Factory Building"
+                    loading="lazy"
                   />
                 </div>
               </div>
 
               {/* BOTTOM MAP CONTAINER */}
               <div className="cnt-map-box">
+                <div className="cnt-map-header-bar">
+                  <div className="cnt-map-header-info">
+                    <span className="cnt-map-header-tag">Factory Coordinates &bull; 23&deg;01'31.2"N 72&deg;49'47.1"E</span>
+                    <strong>Jay Cable Industries (HITEX PLUS)</strong>
+                    <small>Chandiyel to Gamji Road, Village-Pasuniya, Ta-Dahegam, Gandhinagar - 382433</small>
+                  </div>
+                  <div className="cnt-map-actions-row">
+                    <div className="cnt-map-mode-pills">
+                      <button
+                        type="button"
+                        className={`cnt-map-toggle-btn ${mapMode === 'satellite' ? 'active' : ''}`}
+                        onClick={() => setMapMode('satellite')}
+                      >
+                        Satellite
+                      </button>
+                      <button
+                        type="button"
+                        className={`cnt-map-toggle-btn ${mapMode === 'roadmap' ? 'active' : ''}`}
+                        onClick={() => setMapMode('roadmap')}
+                      >
+                        Map
+                      </button>
+                    </div>
+                    <a
+                      href="https://www.google.com/maps/place/Jay+Cable+Industries/@23.0257957,72.8295774,18z/data=!4m6!3m5!1s0x395e870afde59a39:0x98f9c1a758da978f!8m2!3d23.0259873!4d72.8298699!16s%2Fg%2F11g8h51qmp?entry=ttu"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cnt-map-directions-link"
+                    >
+                      <Navigation size={14} /> Open in Google Maps <ExternalLink size={12} />
+                    </a>
+                  </div>
+                </div>
                 <iframe
-                  title="HITEX PLUS Location Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14674.34185250484!2d72.7663248!3d23.1487845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e8654a1a5b8a5%3A0x8e8749e7b2756858!2sDahegam%2C%20Gujarat%20382433!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  title="Jay Cable Industries Factory Location Map"
+                  src={
+                    mapMode === 'satellite'
+                      ? "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1835.9788!2d72.8295774!3d23.0257957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e870afde59a39%3A0x98f9c1a758da978f!2sJay%20Cable%20Industries!5e1!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                      : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1835.9788!2d72.8295774!3d23.0257957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e870afde59a39%3A0x98f9c1a758da978f!2sJay%20Cable%20Industries!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  }
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

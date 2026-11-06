@@ -18,7 +18,7 @@ The extension refreshes this file automatically. Prefer its concise state over o
 - Workspace ID: tm-ws-2a97df18897e67cd93b800e7
 - Window ID: tm-win-839854e37421c7d170e909c2
 - Project: hitexcables
-- Framework: react
+- Framework: 
 - Developer mode: smart
 - Model mode: paid/manual
 - Active file: HITEX PLUS PROFILE 2026 NEW.pdf
