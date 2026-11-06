@@ -1371,12 +1371,6 @@ function App() {
               >
                 <Facebook size={18} />
               </a>
-              <a
-                href="mailto:info@hitexplus.com"
-                aria-label="Email"
-              >
-                <Mail size={18} />
-              </a>
             </div>
           </div>
 
