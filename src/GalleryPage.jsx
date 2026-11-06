@@ -217,25 +217,11 @@ export default function GalleryPage({ onNavigate }) {
       src: '/assets/image 2.jpeg'
     },
     {
-      id: 'im-3',
-      type: 'photo',
-      title: 'Precision High-Speed Wire Stranding System',
-      category: 'Manufacturing',
-      src: '/assets/image 3.jpeg'
-    },
-    {
       id: 'im-4',
       type: 'photo',
       title: 'Multi Strand Flexible Copper Cables',
       category: 'Products',
       src: '/assets/image 4.jpeg'
-    },
-    {
-      id: 'im-6',
-      type: 'photo',
-      title: 'Manufacturing Plant Extrusion Shop Floor',
-      category: 'Manufacturing',
-      src: '/assets/image 6.jpeg'
     },
     {
       id: 'p-subm',
@@ -259,20 +245,6 @@ export default function GalleryPage({ onNavigate }) {
       src: '/assets/image 18.jpeg'
     },
     {
-      id: 'im-19',
-      type: 'photo',
-      title: 'Cable Armor Stranding & Helical Wire Feeding',
-      category: 'Manufacturing',
-      src: '/assets/image 19.jpeg'
-    },
-    {
-      id: 'im-20',
-      type: 'photo',
-      title: 'Continuous PVC & XLPE Extrusion Line',
-      category: 'Manufacturing',
-      src: '/assets/image 20.jpeg'
-    },
-    {
       id: 'im-21',
       type: 'photo',
       title: '3-Core Submersible Flat Cables in Production',
@@ -285,13 +257,6 @@ export default function GalleryPage({ onNavigate }) {
       title: 'Finished Cable Drums & Spools Staging Area',
       category: 'Infrastructure',
       src: '/assets/image 22.jpeg'
-    },
-    {
-      id: 'im-23',
-      type: 'photo',
-      title: 'Plant Operations & Extruder Overview',
-      category: 'Manufacturing',
-      src: '/assets/image 23.jpeg'
     },
     /* ==========================================================================
        3. ACCREDITED QUALITY TESTING & LABORATORY PROCEDURES
