@@ -37,21 +37,21 @@ const wireVideos = [
     title: 'Cable Extrusion Process',
     desc: 'High-speed continuous copper wire drawing, heating, and precision PVC insulation extrusion.',
     src: '/assets/videos/video_1.mp4',
-    poster: '/assets/product_details/wire_making_poster.jpg'
+    poster: '/assets/product_details/extrusion_poster.webp'
   },
   {
     id: 'stranding',
     title: 'Wire Bunching & Stranding',
     desc: 'Multi-strand electrolytic copper conductor bunching and high-precision twisting line.',
     src: '/assets/videos/video_2.mp4',
-    poster: '/assets/product_details/wire_extruder_poster.jpg'
+    poster: '/assets/product_details/stranding_poster.webp'
   },
   {
     id: 'coiling',
     title: 'Automated Coiling & Packing',
     desc: 'Automated 90-meter coil winding, length metering, and protective shrink-wrap packaging unit.',
     src: '/assets/videos/video_4.mp4',
-    poster: '/assets/product_details/wire_making_poster.jpg'
+    poster: '/assets/product_details/coiling_poster.webp'
   }
 ];
 
